@@ -8,7 +8,9 @@ Werecapone is a real-time multiplayer word guessing game, where everyone in the 
 
 ### Layout Design
 
-![Mock](blank.jpg)
+![Mock](Login_Page_Mockup.jpg)
+![Mock](Gameplay_Page_Mockup.jpg)
+![Mock](Leaderboard_Page_Mockup.jpg)
 
 ### Key features
 
