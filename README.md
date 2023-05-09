@@ -35,6 +35,6 @@ I am going to use the required technologies in the following ways.
   - retrieving questions/answers
   - retrieving point value per player
 - **DB** - Store users, questions, answers, point scores in database.
-- **Login** - Register and login users. Credentials securely stored in database. Can't vote unless authenticated.
+- **Login** - Register and login users. Credentials securely stored in database. Can't ask questions unless authenticated.
 - **WebSocket** - In real time, when each user asks a question, their question will be displayed to other users.
-- **React** - Application ported to use the React web framework.
+- **React** - Application will use the React web framework.
