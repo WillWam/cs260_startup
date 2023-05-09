@@ -6,10 +6,13 @@ Remember the classic game "20 Questions"? What fun! But… it gets boring to pla
 Werecapone is a real-time multiplayer word guessing game, where everyone in the world can play as the question-givers, all at the same time! Integrated with the ChatGPT API, the website will generate a word (could be a famous person, place, verb, adjective, concept/idea, etc.), and return the answer "yes", "no", or "maybe" to any question asked. When someone asks a question, the question and corresponding answer will be displayed to everyone else, and logged so that all players can work together to guess the word. As soon as the word is guessed, the player who guessed it gains points based on the difficulty of the word, and those points persist in the player's account for all to see in the leaderboard. Then, a new word is served up and the fun never stops!
 
 
-### Layout Design
-
+### Login Page Design
 ![Mock](Login_Page_Mockup.jpg)
+
+### Gameplay Page Design
 ![Mock](Gameplay_Page_Mockup.jpg)
+
+### Leaderboard Page Design
 ![Mock](Leaderboard_Page_Mockup.jpg)
 
 ### Key features
