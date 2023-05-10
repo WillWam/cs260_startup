@@ -38,3 +38,15 @@ I am going to use the required technologies in the following ways.
 - **Login** - Register and login users. Credentials securely stored in database. Can't ask questions unless authenticated.
 - **WebSocket** - In real time, when each user asks a question, their question will be displayed to other users.
 - **React** - Application will use the React web framework.
+
+## HTML deliverable
+
+For this deliverable I added the application structure.
+
+- **HTML pages** - Four HTML pages: Login, Playing the Game, Viewing the Leaderboard, About.
+- **Links** - Each of the 4 pages links to all others.
+- **Text** - Instructions for how to play, description about the game, leaderboard/username statistics, and questions/answers log are all represented with text.
+- **Images** - There is a robot image representing the AI in gameplay, and checkmarks and x's indicating yes/no answers.
+- **Login** - Input boxes for username and password and submit button for login.
+- **Database** - The previous questions asked and answered represent data pulled from the database.
+- **WebSocket** - The realtime count of users and their usernames represents data from the websocket.
