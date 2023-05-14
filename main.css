@@ -2,10 +2,12 @@
     font-family:  Arial, Helvetica, sans-serif;
     background-color: #1b1b1b;
     color: white;
+    padding: 5px;
+    border: none;
 }
 
 main {
-    background-color: #555555;
+    background-color: #1b1b1b;
     
 }
 
@@ -26,3 +28,23 @@ li {
     flex: 1;
     list-style-type: none
 }
+
+.nav-item {
+    /* background-color: red; */
+}
+
+.nav-item.active {
+    background-color:red;
+}
+
+.nav-link {
+    background-color: #e71151;
+    color: white;
+    
+}
+
+.nav-link:active {
+    background-color: blue;
+    color: white;
+}
+
