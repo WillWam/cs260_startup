@@ -79,15 +79,16 @@ li {
 }
 
 label {
-    padding: 10px;
+    padding: 0px;
     font-size: 1.25em;
+    margin: 0px;
 }
 
 #login-box {
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 50%;
+    /* width: 50%; */
     text-align: center;
     padding: 50px;
 }
@@ -96,7 +97,8 @@ input[type=text], input[type=password], select {
     width: 45%;
     min-width: 200px;
     padding: 12px 20px;
-    margin: 5px 0;
+    margin: 0px;
+    margin-bottom: 10px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -105,7 +107,13 @@ input[type=text], input[type=password], select {
   }
 
  #login-button {
-     margin: 25px;
+     margin-top: 25px;
+ }
+
+ #login-panel {
+     margin: auto;
+     margin-top: 50px;
+     width: 300px;
  }
 
  #about-text {
