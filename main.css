@@ -20,6 +20,9 @@ main {
     background-color: #333333;
     padding: 0px;
     flex: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 footer {
@@ -103,6 +106,22 @@ input[type=text], input[type=password], select {
 
  #login-button {
      margin: 25px;
-     background-color: blue;
+ }
+
+ #about-text {
+     padding: 25px;
+ }
+
+ #about-panel {
+     margin: 25px;
+    
+     max-width: 800px;
+     margin: auto;
+     margin-top: 50px
+ }
+
+ .panel {
+     background-color: rgba(85, 85, 85, 0.548);
+     border-radius: 25px;
  }
 
