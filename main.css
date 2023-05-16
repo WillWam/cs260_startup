@@ -123,9 +123,11 @@ input[type=text], input[type=password], select {
  #about-panel {
      margin: 25px;
     
-     max-width: 800px;
+     max-width: 600px;
      margin: auto;
-     margin-top: 50px
+     margin-top: 50px;
+
+     font-size: 1.15em;
  }
 
  .panel {
