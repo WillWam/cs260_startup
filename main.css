@@ -186,3 +186,23 @@ table {
     padding-bottom: 5px;
 }
 
+#main-play {
+    flex-direction: row;
+    display: flex;
+}
+
+#player-info {
+    width: 33%;
+}
+
+#word-display {
+    text-align: center;
+    width: 33%;
+}
+
+#answer-log {
+    width: 33%;
+}
+
+
+

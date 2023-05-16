@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="favicon.ico" />
+        <link rel="icon" href="assets/wolf-icon.ico" />
         <link rel="stylesheet" href="main.css" />
 
         <!-- Include bootstrap CSS framework -->
@@ -38,20 +38,33 @@
         </header>
 
         <main>
-            <div class="word-display">
-                <h1>Guess the Word!</h1>
+            <div id="main-play">
+
+                <div id="player-info">
+                    <h3>3 players currently active</h3>
+                    <ul>
+                        <li>
+                            Will_Wam
+                        </li>
+                        <li>
+                            Cameron
+                        </li>
+                        <li>
+                            WordGuessr
+                        </li>
+                    </ul>
+                </div>
+
+            <div id="word-display">
+                <h2>Guess the Word!</h2>
                 <p>Difficulty: Medium</p>
-                <p>24 Questions Answered So Far</p>
                 <img alt="werecapone_robot" width="250px" src="assets/Robot.png"> 
                 
             </div>
-            <div class="word-guess">
-                <h3>Type in a yes/no question below</h3>
-                <input type="text" id="password" placeholder="Can I buy it in a store?"/>
-                <button type="submit">Submit</button>
-            </div>
-            <div class="answer-log">
+            
+            <div id="answer-log">
                 <h3>Previous Questions / Answers</h3>
+                <p>24 Questions Answered So Far</p>
                 <ul>
                     <li>
                         <img width="25px" alt="yes" src="assets/GreenYes.png">
@@ -75,22 +88,14 @@
                     </li>
                 </ul>
             </div>
-
-            <div class="player-info">
-                <h3>3 players currently active</h3>
-                <ul>
-                    <li>
-                        Will_Wam
-                    </li>
-                    <li>
-                        Cameron
-                    </li>
-                    <li>
-                        WordGuessr
-                    </li>
-                </ul>
+        
             </div>
-            
+
+            <div class="panel" id="word-guess">
+                <h3>Type in a yes/no question below</h3>
+                <input type="text" id="password" placeholder="Can I buy it in a store?"/>
+                <button type="submit">Submit</button>
+            </div>
         </main>
 
         <footer>
