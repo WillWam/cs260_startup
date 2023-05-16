@@ -37,11 +37,11 @@
             </ul>
         </header>
 
-        <main>
+        <main id="play-main">
             <div id="main-play">
 
                 <div class="panel" id="player-info">
-                    <h3>3 players currently active</h3>
+                    <h3 id="player-info-title">Active Players: 3</h3>
                     <ul>
                         <li>
                             Will_Wam
@@ -63,26 +63,26 @@
             </div>
             
             <div class="panel" id="answer-log">
-                <h3>Previous Questions / Answers</h3>
-                <p>24 Questions Answered So Far</p>
+                <h3 id="answer-log-title">Previous Answers</h3>
+                <p id="questions-answered">24 Questions Answered So Far</p>
                 <ul>
                     <li>
-                        <img width="25px" alt="yes" src="assets/GreenYes.png">
+                        <img width="20px" alt="yes" src="assets/GreenYes.png">
                         <span>Is it bigger than a basketball?</span>
                         <span> - Will_Wam</span>
                     </li>
                     <li>
-                        <img width="25px" alt="no" src="assets/RedNo.png">
+                        <img width="20px" alt="no" src="assets/RedNo.png">
                         <span>Is it an adjective?</span>
                         <span> - Cameron</span>
                     </li>
                     <li>
-                        <img width="25px" alt="no" src="assets/RedNo.png">
+                        <img width="20px" alt="no" src="assets/RedNo.png">
                         <span>Do people typically own one?</span>
                         <span> - Megamind_Master</span>
                     </li>
                     <li>
-                        <img width="25px" alt="no" src="assets/BlueMaybe.png">
+                        <img width="20px" alt="no" src="assets/BlueMaybe.png">
                         <span>Will it break if you hit it with a hammer?</span>
                         <span> - WordGuessr</span>
                     </li>
@@ -92,9 +92,9 @@
             </div>
 
             <div class="panel" id="word-guess">
-                <h3>Type in a yes/no question below</h3>
-                <input type="text" id="password" placeholder="Can I buy it in a store?"/>
-                <button type="submit">Submit</button>
+                <p>Type in a yes/no question below</p>
+                <input type="text" id="question-bar" placeholder="Can I buy it in a store?"/>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </main>
 

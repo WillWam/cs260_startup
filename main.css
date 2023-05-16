@@ -52,6 +52,14 @@ h2 {
     padding-top: 25px;
 }
 
+h3 {
+    font-size: 1px;
+    font-family: Arial Black, Arial, Helvetica, sans-serif;
+    color: #BBBBBB;
+    text-align: center;
+    padding-top: 0px;
+}
+
 .panel {
     background-color: rgb(66, 66, 66);
     border-radius: 25px;
@@ -189,6 +197,7 @@ table {
 #main-play {
     flex-direction: row;
     display: flex;
+    flex: 4;
 }
 
 #player-info {
@@ -212,7 +221,8 @@ table {
 #answer-log {
     width: 33%;
     margin: 25px;
-    padding: 15px;
+    padding: 5px;
+    padding-left: 0px;
     text-align: center;
 }
 
@@ -220,5 +230,44 @@ table {
     flex-direction: column;
     display: flex;
     text-align: left;
+}
+
+#player-info-title {
+    font-size: 2vw;
+    padding-bottom: 15px;
+}
+
+#answer-log-title {
+    font-size: 2vw;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+#questions-answered {
+    padding: 0px;
+    font-size: 1.5vw;
+}
+
+#word-guess {
+    text-align: center;
+    margin: 25px;
+    margin-top: 0px;
+    padding: 25px;
+}
+
+#question-bar {
+    height: 38px;
+    padding: 10px;
+    margin-right: 15px;
+}
+
+#play-main {
+    background-color: #333333;
+    padding: 0px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
