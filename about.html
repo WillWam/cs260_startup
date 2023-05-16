@@ -21,20 +21,13 @@
     <body>
         <header>
             <h1>Werecapone</h1>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="play.html">Play</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="leaderboard.html">Leaderboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="about.html">About</a>
-                  </li>
-            </ul>
+            <div id="nav-div">
+                <button onClick="parent.location='index.html'" class="button">Login</button>
+                <button onClick="parent.location='play.html'" class="button">Play</button>
+                <button onClick="parent.location='leaderboard.html'" class="button">Leaderboard</button>
+                <button onClick="parent.location='about.html'" class="button-active">About</button>
+            </div>
+            <section class="shadow"></section>
         </header>
 
         <main>
