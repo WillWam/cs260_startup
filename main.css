@@ -226,6 +226,13 @@ table {
     text-align: center;
 }
 
+#answer-log-answers {
+    text-align: center;
+    overflow-y: scroll;
+    height: 200px;
+    font-size: 1.25vw;
+}
+
 #answer-log ul {
     flex-direction: column;
     display: flex;
@@ -235,6 +242,13 @@ table {
 #player-info-title {
     font-size: 2vw;
     padding-bottom: 15px;
+}
+
+#player-info-players {
+    text-align: center;
+    overflow-y: scroll;
+    height: 200px;
+    font-size: 1.25vw;
 }
 
 #answer-log-title {
