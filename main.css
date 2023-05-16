@@ -193,6 +193,15 @@ table {
 
 #player-info {
     width: 33%;
+    margin: 25px;
+    padding: 25px;
+    text-align: left;
+}
+
+#player-info ul {
+    flex-direction: column;
+    display: flex;
+    text-align: left;
 }
 
 #word-display {
@@ -202,7 +211,14 @@ table {
 
 #answer-log {
     width: 33%;
+    margin: 25px;
+    padding: 15px;
+    text-align: center;
 }
 
-
+#answer-log ul {
+    flex-direction: column;
+    display: flex;
+    text-align: left;
+}
 
