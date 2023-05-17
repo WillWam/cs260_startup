@@ -4,12 +4,14 @@
     /* --primary: #e71151; */
     --primary: #298ddf;
     --secondary: #dadada;
-    --panel: rgb(66, 66, 66);
-    --panel-border: rgb(48, 48, 48);
+    --panel: rgb(85, 85, 85);
+    --panel-border: rgb(46, 46, 46);
     --header-footer: #1b1b1b;
     --background: #333333;
     --word-panel: #1d6aa8;
     --word-panel-border: #174d79;
+    --button: #298ddf;
+    --button-hover: #3ea8ff;
   }
 
 * {
@@ -170,6 +172,26 @@ li {
     color: var(--header-footer);
 }
 
+.basic-button {
+    background-color: var(--button); 
+    color: var(--secondary);
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.basic-button:hover {
+    background-color: var(--button-hover);
+}
+
 label {
     padding: 0px;
     font-size: 1.25em;
@@ -204,7 +226,7 @@ input[type=text], input[type=password], select {
 
  #login-panel {
      margin: auto;
-     margin-top: 50px;
+     margin-top: 70px;
      width: 300px;
  }
 
@@ -213,11 +235,9 @@ input[type=text], input[type=password], select {
  }
 
  #about-panel {
-     margin: 25px;
-    
      max-width: 600px;
      margin: auto;
-     margin-top: 50px;
+     margin-top: 70px;
 
      font-size: 1.15em;
  }
@@ -299,7 +319,7 @@ table {
 #player-info-players {
     text-align: center;
     overflow-y: auto;
-    height: calc(100vh - 500px);
+    height: calc(100vh - 530px);
     min-height: 55px;
     font-size: 1.25vw;
 }
@@ -345,7 +365,7 @@ table {
 #answer-log-answers {
     text-align: center;
     overflow-y: auto;
-    height: calc(100vh - 500px);
+    height: calc(100vh - 530px);
     min-height: 55px;
     font-size: 1.25vw;
 }
