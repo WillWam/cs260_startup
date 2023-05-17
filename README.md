@@ -50,3 +50,14 @@ For this deliverable I added the application structure.
 - **Login** - Input boxes for username and password and submit button for login.
 - **Database** - The previous questions asked and answered represent data pulled from the database.
 - **WebSocket** - The realtime count of users and their usernames represents data from the websocket.
+
+## CSS deliverable
+
+For this deliverable I properly styled the application into its final appearance.
+
+- **Header, footer, and main content body**
+- **Navigation elements** - I made a button group along the top and styled it with a primary color for the selected page and a brighter color when hovered over.
+- **Responsive to window resizing** - All portions of the app fit the screen size using flex and changing width properties.
+- **Application elements** - Elements are spaced out nicely from each other, with nice looking borders and most content contained within separate panels.
+- **Application text content** - Consistent fonts are used (one for headers, and one for normal text) across all pages. Colors are also consistent.
+- **Application images** - There aren't many images, but the ones that there are are well sized and fit the color scheme.
