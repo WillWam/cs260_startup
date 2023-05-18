@@ -465,7 +465,7 @@ input:focus {
     flex-direction: row;
 } */
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:700px) {
     #main-play {
         flex-direction: column;
         display: flex;
@@ -480,7 +480,8 @@ input:focus {
         height: 20vh;
         max-height: 200px;
         width: 90%;
-        order: 1;
+        order: 2;
+        display: none;
     }
 
     #player-info-players {
@@ -496,19 +497,21 @@ input:focus {
     }
 
     #answer-log {
+        order: 1;
         margin: auto;
-        height: 20vh;
-        max-height: 200px;
+        margin-top: 0px;
+        height: calc(100vh - 500px);
+        max-height: 500px;
         width: 90%;
     }
 
     #answer-log-answers {
-        height: calc(100vh - 100px);
-        max-height: 70px;
+        height: calc(100vh - 590px);
+        min-height: 0px;
     }
 }
 
-@media screen and (min-width:800px) {
+@media screen and (min-width:700px) {
     #main-play {
         flex-direction: row;
         display: flex;
