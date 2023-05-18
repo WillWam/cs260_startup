@@ -247,8 +247,28 @@ input[type=text], input[type=password], select {
     padding-bottom: 25px;
     
     max-width: 600px;
+    min-width: 300px;
+    /* margin: calc(15vw + 25px); */
     margin: auto;
+    width: calc(70vw);
+    height: calc(100vh - 300px);
     margin-top: 15px;
+}
+
+#leaderboard-table {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 330px);
+}
+
+#top-table {
+    display: flex;
+    flex-direction: column;
+}
+
+#scroll-table {
+    height: calc(100vh - 385px);
+    overflow-y: auto;
 }
 
 #leaderboard-header {
@@ -260,35 +280,49 @@ input[type=text], input[type=password], select {
 #leaderboard-table tr:nth-child(odd){background-color: #5f5f5f;}
 #leaderboard-table tr:hover {background-color: #686868;}
 
-table {
-    /* background-color: #3f3f3f; */
-}
-
-#leaderboard-table th {
+#top-row th {
     /* color:var(--primary); */
-    margin: 0px;
+    margin: 15px 0px;
     padding-left: 15px;
-    background-color: var(--panel);
-    font-size: 1.15em;
-    text-align: left;
-    border-radius: 25px;
+    padding-right: 15px;
+    font-size: 1em;
+
 }
 
 #top-row {
-    margin: 25px;
     background-color: var(--panel);
-    font-size: 1.25em;
-    text-align: center;
-    border-radius: 25px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+#leaderboard-table tr, #top-table tr {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
 }
 
 #leaderboard-table td {
-    width: 50%;
+    /* width: 50%; */
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+.leaderboard-username {
+    flex: 1;
+    text-align: left;
+}
+
+.leaderboard-words {
+    flex: 0.75;
+    text-align: center;
+}
+
+.leaderboard-date {
+    flex: 0.75;
+    text-align: center;
+}  
 
 #main-play {
     flex-direction: row;
