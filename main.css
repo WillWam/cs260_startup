@@ -286,7 +286,8 @@ input[type=text], input[type=password], select {
     padding-left: 15px;
     padding-right: 15px;
     font-size: 1em;
-
+    overflow-x: hidden;
+    white-space: nowrap;
 }
 
 #top-row {
@@ -315,7 +316,22 @@ input[type=text], input[type=password], select {
 }
 
 .leaderboard-words {
-    flex: 0.75;
+    flex: 0.5;
+    text-align: center;
+}
+
+.leaderboard-easy {
+    flex: 0.5;
+    text-align: center;
+}
+
+.leaderboard-medium {
+    flex: 0.5;
+    text-align: center;
+}
+
+.leaderboard-hard {
+    flex: 0.5;
     text-align: center;
 }
 
