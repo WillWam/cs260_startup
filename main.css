@@ -9,7 +9,7 @@
     --header-footer: #1b1b1b;
     --background: #333333;
     --word-panel: #1d6aa8;
-    --word-panel-border: #174d79;
+    --word-panel-border: #094e86;
     --button: #298ddf;
     --button-hover: #3ea8ff;
   }
@@ -273,7 +273,7 @@ input[type=text], input[type=password], select {
 }
 
 #leaderboard-header {
-    margin-top: 45px;
+    margin-top: 25px;
     margin-bottom: 0px;
 }
 
@@ -385,7 +385,8 @@ input[type=text], input[type=password], select {
     margin-bottom: 25px;
     /* background-color: #333333; */
     background-color: var(--word-panel);
-    border: 5px solid var(--word-panel-border);
+    /* border: 5px solid var(--word-panel-border); */
+    box-shadow: 0 0 20px var(--word-panel-border);
     max-height: 300px;
 }
 
