@@ -1,17 +1,19 @@
 
 
 :root {
-    /* --primary: #e71151; */
-    --primary: #298ddf;
-    --secondary: #dadada;
+    --primary: #e71151;
+    /* --primary: #0fa86e; */
+    --primary-dark: #b40c3e;
+    /* --primary: #298ddf; */
+    --secondary: #eeeeee;
     --panel: rgb(85, 85, 85);
     --panel-border: rgb(46, 46, 46);
     --header-footer: #1b1b1b;
     --background: #333333;
-    --word-panel: #1d6aa8;
-    --word-panel-border: #094e86;
-    --button: #298ddf;
-    --button-hover: #3ea8ff;
+    --word-panel: var(--primary);
+    --word-panel-border: var(--primary-dark);
+    --button: var(--primary);
+    --button-hover: var(--primary-dark);
   }
 
 * {
@@ -186,7 +188,8 @@ li {
     font-size: 16px;
     transition-duration: 0.2s;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 15px;
+    margin: 5px;
 }
 
 .basic-button:hover {
@@ -211,15 +214,29 @@ label {
 input[type=text], input[type=password], select {
     width: 45%;
     min-width: 200px;
-    padding: 12px 20px;
+    padding: 10px 12px;
     margin: 0px;
     margin-bottom: 10px;
+    margin-top: 5px;
     display: inline-block;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 15px;
     box-sizing: border-box;
-    color: var(--header-footer);
-  }
+    color: var(--secondary);
+    background-color: var(--background);
+}
+
+input:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 7px var(--secondary);
+}
+
+#question-bar {
+    /* height: 38px;
+    padding: 10px;
+    margin-right: 15px; */
+}
 
  #login-button {
      margin-top: 25px;
@@ -341,14 +358,6 @@ input[type=text], input[type=password], select {
     text-align: center;
 }  
 
-#main-play {
-    flex-direction: row;
-    display: flex;
-    height: calc(100vh - 345px);
-    min-height: 200px;
-    margin-top: 25px;
-}
-
 #player-info {
     width: 33%;
     margin: 25px;
@@ -447,12 +456,6 @@ input[type=text], input[type=password], select {
     padding: 25px;
 }
 
-#question-bar {
-    height: 38px;
-    padding: 10px;
-    margin-right: 15px;
-}
-
 /* #play-main {
     background-color: #333333;
     padding: 0px;
@@ -462,3 +465,55 @@ input[type=text], input[type=password], select {
     flex-direction: row;
 } */
 
+@media screen and (max-width:800px) {
+    #main-play {
+        flex-direction: column;
+        display: flex;
+        height: calc(100vh - 345px);
+        min-height: 200px;
+        margin-top: 25px;
+        overflow-y: auto;
+    }
+
+    #player-info {
+        margin: auto;
+        height: 20vh;
+        max-height: 200px;
+        width: 90%;
+        order: 1;
+    }
+
+    #player-info-players {
+        height: calc(100vh - 100px);
+        max-height: 70px;
+    }
+
+    #word-display {
+        margin: auto;
+        height: 70px;
+        width: 250px;
+        order: 0;
+    }
+
+    #answer-log {
+        margin: auto;
+        height: 20vh;
+        max-height: 200px;
+        width: 90%;
+    }
+
+    #answer-log-answers {
+        height: calc(100vh - 100px);
+        max-height: 70px;
+    }
+}
+
+@media screen and (min-width:800px) {
+    #main-play {
+        flex-direction: row;
+        display: flex;
+        height: calc(100vh - 345px);
+        min-height: 200px;
+        margin-top: 25px;
+    }
+}
