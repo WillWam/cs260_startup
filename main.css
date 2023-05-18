@@ -102,7 +102,8 @@ h3 {
 .panel {
     background-color: var(--panel);
     border-radius: 25px;
-    border: 5px solid var(--panel-border);
+    box-shadow: 0 0 20px #1d1d1d;
+    /* border: 5px solid var(--panel-border); */
     /* border: 5px solid var(--primary); */
 }
 
