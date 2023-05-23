@@ -4,7 +4,7 @@ function DebugA(logMessage) {
         console.log(logMessage);
     }
 }
-
+let playerUsername = "Default_Username";
 let activePlayers = [
     "Will_Wam",
     "Cameron",
@@ -32,4 +32,28 @@ function addAllActivePlayers() {
     activePlayers.forEach((player) => addActivePlayer(player));
 }
 
+function submitQuestion(question) {
+    DebugA("addActivePlayer: " + username);
+    let validQuestion = true;
+    let answer = "yes";
+    if(validQuestion) {
+        addAnswer(question, answer, playerUsername);
+    } else {
+
+    }
+}
+
+function addAnswer(question, answer, username) {
+    DebugA("addAnswer " + question);
+
+    const answerLog = document.getElementById("answer-log-ul");
+    const elementTemplate = document.getElementById(answer + "-template");
+    const newAnswer = elementTemplate.cloneNode(true);
+    newAnswer.setAttribute("id", "");
+    newAnswer.innerHTML += question + " - " + username;
+
+    answerLog.appendChild(newAnswer);
+}
+
 addAllActivePlayers();
+addAnswer("is it cool?", "no", "Will");
