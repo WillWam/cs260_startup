@@ -32,15 +32,24 @@ function addAllActivePlayers() {
     activePlayers.forEach((player) => addActivePlayer(player));
 }
 
-function submitQuestion(question) {
-    DebugA("addActivePlayer: " + username);
+function submitQuestion() {
+    const questionBar = document.getElementById("question-bar");
+    let question = questionBar.value;
+    DebugA("addActivePlayer: " + playerUsername);
     let validQuestion = true;
     let answer = "yes";
+    if(Math.random() < 0.3) {
+        answer = "no";
+    } else if (Math.random() < 0.5) {
+        answer = "maybe";
+    }
     if(validQuestion) {
         addAnswer(question, answer, playerUsername);
     } else {
 
     }
+
+    questionBar.value = "";
 }
 
 function addAnswer(question, answer, username) {
