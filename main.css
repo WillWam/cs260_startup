@@ -211,7 +211,44 @@ label {
     margin: auto;
     /* width: 50%; */
     text-align: center;
-    padding: 50px;
+    padding: 45px;
+    margin-top: 0px;
+    padding-bottom: 15px;
+}
+
+#login-text {
+    margin-top: 50px;
+    margin-bottom: 0px;
+    padding: 0px;
+    color: var(--primary);
+    transform: translate(0px, 15px);
+}
+
+#sign-up-text {
+    margin-top: 50px;
+    margin-bottom: 0px;
+    padding: 0px;
+    color: var(--primary);
+    transform: translate(0px, 15px);
+}
+
+#no-account {
+    padding: 0px;
+    margin: 0px;
+    margin-top: 15px;
+}
+
+#click-text-sign-up {
+    padding: 0px;
+    margin: 0px;
+    color: rgb(0, 162, 255);
+    cursor: pointer;
+}
+
+#username-specs, #password-specs {
+    font-size: 0.75em;
+    margin-top: 10px;
+    padding: 0px;
 }
 
 input[type=text], input[type=password], select {
@@ -241,13 +278,18 @@ input:focus {
     margin-right: 15px; */
 }
 
- #login-button {
+ #login-button, #sign-up-button {
      margin-top: 25px;
  }
 
+ #login-button:disabled, #sign-up-button:disabled {
+    background-color:var(--primary-dark);
+    cursor: not-allowed;
+}
+
  #login-panel {
      margin: auto;
-     margin-top: 70px;
+     margin-top: 30px;
      width: 300px;
  }
 
@@ -396,8 +438,6 @@ input:focus {
     
     width: 100%;
     overflow-x: hidden;
-
-    
 }
 
 .player-item {
