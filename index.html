@@ -37,7 +37,7 @@
             <div id="login">
             <h3 id="login-text">Login</h3>
             <div class="panel" id="login-panel">
-            <form id="login-box" method="get" action="play.html">
+            <div id="login-box">
                 <label id="username-label" for="username">Username</label>
                 <br>
                 <input type="text" onChange="checkLoginUsername(this.value);" id="username"/>
@@ -46,18 +46,18 @@
                 <br>
                 <input type="password" onChange="checkLoginPassword(this.value)" id="password"/>
                 <br>
-                <button class="basic-button" id="login-button" type="submit">Login</button>
+                <button class="basic-button" id="login-button" type="submit" onClick="pressLogIn()">Login</button>
                 <p id="username-not-found" style="display: none;">Username not found</p>
                 <p id="no-account">Don't have an account?</p>
                 <p id="click-text-sign-up" onclick="pullUpSignUp()">Sign Up</p>
-            </form>
+            </div>
             </div>
             </div>
 
             <div id="sign-up" style="display: none;">
                 <h3 id="sign-up-text">Sign Up</h3>
                 <div class="panel" id="login-panel">
-                <form id="login-box" method="get" action="play.html">
+                <div id="login-box">
                     <label id="username-label" for="username">Username</label>
                     <br>
                     <input id="username-sign-up" type="text" onChange="checkSignUpUsername(this.value);" />
@@ -71,7 +71,7 @@
                     <p id="password-specs" style="display: none;">Password: Minimum 8 characters, at least one letter and one number</p>
                     <p id="no-account">Already have an account?</p>
                     <p id="click-text-sign-up" onclick="pullUpLogin()">Log In</p>
-                </form>
+                </div>
                 </div>
             </div>
         </main>

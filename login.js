@@ -91,10 +91,19 @@ function setButton() {
 }
 
 
-function pressLogin() {
-    console.log("pressLogin");
+function pressLogIn() {
+    DebugA("pressLogin")
+    const usernameInput = document.getElementById("username");
+    localStorage.setItem("username", usernameInput.value);
+
+    window.location.href = "play.html";
 }
 
 function pressSignUp() {
-    console.log("press sign up");
+    DebugA("pressSignUp");
+    const usernameInput = document.getElementById("username-sign-up");
+    localStorage.setItem("username", usernameInput.value);
+
+    window.location.href = "play.html";
 }
+

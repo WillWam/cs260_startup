@@ -4,22 +4,32 @@ function DebugA(logMessage) {
         console.log(logMessage);
     }
 }
-let playerUsername = "Default_Username";
+let playerUsername = "none";
 let activePlayers = [
-    "Will_Wam",
-    "Cameron",
-    "Test_User",
-    "Awesome_Guy"
+    
 ];
 
-function logIn(username) {
+function logIn() {
     DebugA("logIn");
-    const loggedInText = document.getElementById("logged-in-element");
-    loggedInText.innerHTML = "Logged in - " + username;
+    playerUsername = localStorage.getItem("username");
+    const loggedInText = document.getElementById("logged-in-text");
+    loggedInText.innerHTML = "Logged in - " + playerUsername;
+
+    pushUniquePlayer(playerUsername);
+    addAllActivePlayers();
+
+}
+
+function pushUniquePlayer(username) {
+    DebugA("pushUniquePlayer: " + username);
+    if(!activePlayers.includes(username)) {
+        activePlayers.push(username);
+    }
 }
 
 function addActivePlayer(username) {
     DebugA("addActivePlayer: " + username);
+
     const activeUsersUl = document.getElementById("active-players-ul");
     const newUserItem = document.createElement("SECTION");
     newUserItem.innerHTML = username;
@@ -28,6 +38,13 @@ function addActivePlayer(username) {
 }
 
 function addAllActivePlayers() {
+    const activeUsersUl = document.getElementById("active-players-ul");
+    const playerInfoTitle = document.getElementById("player-info-title");
+
+    activeUsersUl.innerHTML = "";
+    playerInfoTitle.innerHTML = "Active Players: " + String(activePlayers.length);
+    console.log(activePlayers);
+
     DebugA("addAllActivePlayers");
     activePlayers.forEach((player) => addActivePlayer(player));
 }
@@ -38,7 +55,7 @@ function submitQuestion() {
     DebugA("addActivePlayer: " + playerUsername);
     let validQuestion = true;
     let answer = "yes";
-    if(Math.random() < 0.3) {
+    if(Math.random() < 0.33) {
         answer = "no";
     } else if (Math.random() < 0.5) {
         answer = "maybe";
@@ -59,10 +76,10 @@ function addAnswer(question, answer, username) {
     const elementTemplate = document.getElementById(answer + "-template");
     const newAnswer = elementTemplate.cloneNode(true);
     newAnswer.setAttribute("id", "");
+    newAnswer.setAttribute("style", "display: block;");
     newAnswer.innerHTML += question + " - " + username;
 
     answerLog.appendChild(newAnswer);
 }
 
-addAllActivePlayers();
-addAnswer("is it cool?", "no", "Will");
+logIn();
