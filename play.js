@@ -17,7 +17,6 @@ function logIn() {
 
     pushUniquePlayer(playerUsername);
     addAllActivePlayers();
-
 }
 
 function pushUniquePlayer(username) {
