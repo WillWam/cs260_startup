@@ -365,6 +365,10 @@ input:focus {
     flex-direction: row;
 }
 
+#leaderboard-table tr {
+    max-height: 35px;
+}
+
 #leaderboard-table td {
     /* width: 50%; */
     padding-left: 15px;

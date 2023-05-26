@@ -8,6 +8,14 @@ let playerUsername = "none";
 let activePlayers = [
     
 ];
+let questionsLog = [
+    // {
+    //     id: 2020,
+    //     question: "Is it a cool thing?",
+    //     answer: "yes",
+    //     username: "Will_Wam"
+    // }
+];
 
 function logIn() {
     DebugA("logIn");
@@ -42,35 +50,65 @@ function addActivePlayer(username) {
 }
 
 function addAllActivePlayers() {
+    DebugA("addAllActivePlayers");
     const activeUsersUl = document.getElementById("active-players-ul");
     const playerInfoTitle = document.getElementById("player-info-title");
 
     activeUsersUl.innerHTML = "";
     playerInfoTitle.innerHTML = "Active Players: " + String(activePlayers.length);
-    console.log(activePlayers);
+    DebugA(activePlayers);
 
-    DebugA("addAllActivePlayers");
     activePlayers.forEach((player) => addActivePlayer(player));
 }
 
 function submitQuestion() {
     const questionBar = document.getElementById("question-bar");
     let question = questionBar.value;
-    DebugA("addActivePlayer: " + playerUsername);
-    let validQuestion = true;
+    
     let answer = "yes";
     if(Math.random() < 0.33) {
         answer = "no";
     } else if (Math.random() < 0.5) {
         answer = "maybe";
     }
+    let currentUsername = "";
+    if(playerUsername === null) {
+        displayUsername = "Anonymous";
+    } else {
+        displayUsername = playerUsername;
+    }
+
+    let validQuestion = true;
     if(validQuestion) {
-        addAnswer(question, answer, playerUsername);
+        newQuestionItem = {
+            id: 2020,
+            question: question,
+            answer: answer,
+            username: displayUsername
+        }
+        pushUniqueQuestion(newQuestionItem);
+        addAllAnswers();
     } else {
 
     }
 
     questionBar.value = "";
+}
+
+function pushUniqueQuestion(questionItem) {
+    DebugA("pushUnique Question: " + questionItem);
+    if(!questionsLog.includes(questionItem)) {
+        questionsLog.push(questionItem);
+    }
+
+    localStorage.setItem("latestQuestion", JSON.stringify(questionItem));
+}
+
+function populateQuestionsLogArray() {
+    questionsLog = [];
+    if(localStorage.getItem("latestQuestion") != null) {
+        questionsLog.push(JSON.parse(localStorage.getItem("latestQuestion")));
+    }
 }
 
 function addAnswer(question, answer, username) {
@@ -86,4 +124,20 @@ function addAnswer(question, answer, username) {
     answerLog.appendChild(newAnswer);
 }
 
+function addAllAnswers() {
+    DebugA("add All Answers");
+
+    // populateQuestionsLogArray();
+
+    const answerLogUl = document.getElementById("answer-log-ul");
+    const questionsAnswered = document.getElementById("questions-answered");
+
+    answerLogUl.innerHTML = "";
+    questionsAnswered.innerHTML = "" + String(questionsLog.length) + " Questions Answered So Far";
+    DebugA(questionsAnswered);
+
+    questionsLog.forEach((answerObject) => addAnswer(answerObject.question, answerObject.answer, answerObject.username));
+}
+
 logIn();
+addAllAnswers();
