@@ -61,3 +61,12 @@ For this deliverable I properly styled the application into its final appearance
 - **Application elements** - Elements are spaced out nicely from each other, with nice looking borders and most content contained within separate panels.
 - **Application text content** - Consistent fonts are used (one for headers, and one for normal text) across all pages. Colors are also consistent.
 - **Application images** - There aren't many images, but the ones that there are are well sized and fit the color scheme.
+
+## JavaScript deliverable
+
+For this deliverable I added javascript to all 4 pages to add functonality.
+
+- **login** - When you press the login or sign up button it takes you to the play page. It also saves your entered username and displays it in the footer on every page from then on. You are effectively "signed in"
+- **database** - Added javascript functions to populate arrays (in the future will populate with database data), in order to fill in the previous questions/answers log and leaderboard table of high scores.
+- **WebSocket** - Interval is set to simulate new players joining live, so that they can be viewed in the "active players" section in play page.
+- **application logic** - The submit question button and input bar are attached to the answer log panel, so that whenever you press enter it adds it to the list of previously asked questions. Right now, it just picks a random answer of "yes", "no", or "maybe" to anything you type in.
