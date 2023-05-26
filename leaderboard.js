@@ -6,14 +6,14 @@ function DebugA(logMessage) {
 }
 
 let leaderboardEntries = [
-    {
-        username: "Test_username",
-        totalWords: 25,
-        easyWords: 6,
-        mediumWords: 8,
-        hardWords: 11,
-        joinDate: "5/24/23"
-    },
+    // {
+    //     username: "Test_username",
+    //     totalWords: 25,
+    //     easyWords: 6,
+    //     mediumWords: 8,
+    //     hardWords: 11,
+    //     joinDate: "5/24/23"
+    // },
     
 ]
 
@@ -80,5 +80,48 @@ function logIn() {
     }
 }
 
+function delay(milliseconds) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, milliseconds);
+    });
+  }
+
+async function fakeEntries() {
+    let fakeEntries = [
+        {
+            username: "Test_username",
+            totalWords: 25,
+            easyWords: 6,
+            mediumWords: 8,
+            hardWords: 11,
+            joinDate: "5/24/23"
+        },
+        {
+            username: "Penguin_man47",
+            totalWords: 25,
+            easyWords: 6,
+            mediumWords: 18,
+            hardWords: 11,
+            joinDate: "5/24/23"
+        },
+        {
+            username: "ThebestUser",
+            totalWords: 2,
+            easyWords: 6,
+            mediumWords: 8,
+            hardWords: 11,
+            joinDate: "5/24/23"
+        },
+    ]
+    for(let i=0; i<3; i++) {
+        await delay(300);
+        leaderboardEntries.push(fakeEntries[i]);
+        addAllLeaderboardEntries();
+    }
+}
+
 logIn();
 addAllLeaderboardEntries();
+fakeEntries();

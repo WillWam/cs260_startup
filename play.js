@@ -34,7 +34,7 @@ function logIn() {
 
 function pushUniquePlayer(username) {
     DebugA("pushUniquePlayer: " + username);
-    if(!activePlayers.includes(username)) {
+    if(!activePlayers.includes(username) && username !== null) {
         activePlayers.push(username);
     }
 }
@@ -139,5 +139,23 @@ function addAllAnswers() {
     questionsLog.forEach((answerObject) => addAnswer(answerObject.question, answerObject.answer, answerObject.username));
 }
 
+function delay(milliseconds) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, milliseconds);
+    });
+  }
+
+async function fakeUsers() {
+    let fakeNames = ["Bob", "Sue", "Mary", "Willllkk", "Masterbro", "coolguy", "awesomepenguin"]
+    for(let i=0; i<7; i++) {
+        await delay(2000);
+        pushUniquePlayer(fakeNames[i]);
+        addAllActivePlayers();
+    }
+}
+
 logIn();
 addAllAnswers();
+fakeUsers();
