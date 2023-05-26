@@ -61,3 +61,12 @@ For this deliverable I properly styled the application into its final appearance
 - **Application elements** - Elements are spaced out nicely from each other, with nice looking borders and most content contained within separate panels.
 - **Application text content** - Consistent fonts are used (one for headers, and one for normal text) across all pages. Colors are also consistent.
 - **Application images** - There aren't many images, but the ones that there are are well sized and fit the color scheme.
+
+## Javascript deliverable
+
+For this deliverable I added javascript to all 4 pages to add functonality
+
+- **Header, footer, and main content body**
+- **Login Components** - There's regex on signup for username and password, and the local storage holds whatever username you enter and uses it to display data 
+- **Application elements** - Elements get created and added to the DOM to represent question logs and leaderboard entries.
+- **Application text content** - Text in several different panels is updated dynamically based on number of active players, and words guessed previously
