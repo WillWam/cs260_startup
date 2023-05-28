@@ -156,6 +156,13 @@ async function fakeUsers() {
     }
 }
 
+function setWordDisplay(difficulty) {
+    const difficultyDisplay = document.getElementById("difficulty-display");
+    difficultyDisplay.textContent = "Difficulty: " + difficulty;
+    difficultyDisplay.setAttribute("class",difficulty);
+}
+
 logIn();
 addAllAnswers();
 fakeUsers();
+setWordDisplay("Medium");
