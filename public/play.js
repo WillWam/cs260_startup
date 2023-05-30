@@ -9,12 +9,7 @@ let activePlayers = [
     
 ];
 let questionsLog = [
-    // {
-    //     id: 2020,
-    //     question: "Is it a cool thing?",
-    //     answer: "yes",
-    //     username: "Will_Wam"
-    // }
+
 ];
 
 function logIn() {

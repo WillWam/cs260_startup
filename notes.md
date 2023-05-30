@@ -1,1 +1,0 @@
-In this section (GitHub) I learned about commit conflicts when they must be merged. I learned that when someone else has committed changes that conflict with ones that I have made, I can go in and select which changes to keep.
