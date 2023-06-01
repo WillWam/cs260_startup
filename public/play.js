@@ -5,6 +5,7 @@ function DebugA(logMessage) {
     }
 }
 let playerUsername = "none";
+let currentWord;
 let activePlayers = [
     
 ];
@@ -163,24 +164,33 @@ async function newWord() {
     newWord = await response.json();
     DebugA("New word to be set: " + newWord);
 
+    await newWord;
+    DebugA("here");
+
     const responseSetWord = await fetch('/api/newWord', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(newWord),
     });
+}
 
-    newWord = String(newWord);
+async function getWord() {
+    const response = await fetch('/api/word');
+    currentWord = await response.json();
+    currentWord = String(currentWord);
 
-    if(newWord.length > 7) {
+    if(currentWord.length > 7) {
         setWordDisplay("Hard");
-    } else if(newWord.length > 5) {
+    } else if(currentWord.length > 5) {
         setWordDisplay("Medium");
     } else {
         setWordDisplay("Easy");
     }
+    DebugA("current word retrieved: " + currentWord);
 }
 
 logIn();
 addAllAnswers();
 fakeUsers();
 newWord();
+getWord();

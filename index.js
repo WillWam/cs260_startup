@@ -42,15 +42,16 @@ apiRouter.post('/guessWord', (req, res) => {
   res.send(wordCorrectStatus);
 });
 
+// Set Word
+apiRouter.post('/newWord', (req, res) => {
+  word = setWord(req.body);
+  res.send(word);
+});
+
 // SubmitScore
 apiRouter.post('/score', (req, res) => {
   updateScores(req.body, scores);
   res.send(scores);
-});
-
-// Set Word
-apiRouter.post('/newWord', (req, res) => {
-  setWord(req.body);
 });
 
 // Return the application's default page if the path is unknown
@@ -79,7 +80,7 @@ let word = "";
 // }
 
 function setWord(newWord) {
-  word = newWord;
+  return newWord;
 }
 
 function updateScores(newScore) {
