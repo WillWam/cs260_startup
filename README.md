@@ -70,3 +70,13 @@ For this deliverable I added javascript to all 4 pages to add functonality.
 - **database** - Added javascript functions to populate arrays (in the future will populate with database data), in order to fill in the previous questions/answers log and leaderboard table of high scores.
 - **WebSocket** - Interval is set to simulate new players joining live, so that they can be viewed in the "active players" section in play page.
 - **application logic** - The submit question button and input bar are attached to the answer log panel, so that whenever you press enter it adds it to the list of previously asked questions. Right now, it just picks a random answer of "yes", "no", or "maybe" to anything you type in.
+
+## Service deliverable
+
+For this deliverable I created an HTTP service to host my frontend and provide backend endpoints.
+
+- **Node.js/Express HTTP service** - Done!
+- **Static middleware for frontend** - Done!
+- **Calls to third party endpoints** - The front end calls a random word generator API (https://random-word-api.vercel.app/api?words=1). Due to the hidden nature of the word for the game, the word is not displayed on screen but can currently be seen in the console in a console.log. 
+- **Backend service endpoints** - Endpoints are implemented for retrieving the log of previously asked qeustions and their answers, posting new questions to the log, getting the list of players' scores, setting the new word that users are supposed to be guessing, and guessing the word. 
+- **Frontend calls service endpoints** - The frontend calls the service endpoints in order to retrieve what the current secret word is, set a new secret word, load up the list of previously asked questions. 
