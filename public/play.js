@@ -57,38 +57,40 @@ function addAllActivePlayers() {
     activePlayers.forEach((player) => addActivePlayer(player));
 }
 
-function submitQuestion() {
+async function submitQuestion() {
+    DebugA("submit question");
+
     const questionBar = document.getElementById("question-bar");
     let question = questionBar.value;
-    
-    let answer = "yes";
-    if(Math.random() < 0.33) {
-        answer = "no";
-    } else if (Math.random() < 0.5) {
-        answer = "maybe";
-    }
-    let currentUsername = "";
-    if(playerUsername === null) {
-        displayUsername = "Anonymous";
-    } else {
-        displayUsername = playerUsername;
-    }
-
-    let validQuestion = true;
-    if(validQuestion) {
-        newQuestionItem = {
-            id: 2020,
-            question: question,
-            answer: answer,
-            username: displayUsername
-        }
-        pushUniqueQuestion(newQuestionItem);
-        addAllAnswers();
-    } else {
-
-    }
-
     questionBar.value = "";
+
+    let displayUsername = "";
+    if(playerUsername === null) {
+      displayUsername = "Anonymous";
+    } else {
+      displayUsername = playerUsername;
+    }
+
+    let questionItem = {
+        id: 1111,
+        username: displayUsername,
+        question: question,
+        answer: "none",
+        date: "6/1/23"
+    }
+
+    DebugA(questionItem);
+    
+    let answerItem = await fetch('/api/askQuestion', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(questionItem),
+    });
+    answerItem = await answerItem.json();
+    DebugA("answer returned: " + answerItem);
+
+    populateQuestionsLogArray();
+
 }
 
 function pushUniqueQuestion(questionItem) {
@@ -96,14 +98,11 @@ function pushUniqueQuestion(questionItem) {
     if(!questionsLog.includes(questionItem)) {
         questionsLog.push(questionItem);
     }
-
-    localStorage.setItem("latestQuestion", JSON.stringify(questionItem));
 }
 
 async function populateQuestionsLogArray() {
     DebugA("populate Question Log array");
-    const response = await fetch('/api/questionLog');
-    DebugA(response);
+    const response = await fetch('/api/questionsLog');
     questionsLog = await response.json();
     DebugA(questionsLog);
     addAllAnswers();
@@ -176,7 +175,12 @@ async function newWord() {
 
 async function getWord() {
     const response = await fetch('/api/word');
-    currentWord = await response.json();
+    try {
+        currentWord = await response.json();
+    } catch {
+        await newWord();
+        currentWord = await response.json();
+    }
     currentWord = String(currentWord);
 
     if(currentWord.length > 7) {
@@ -187,10 +191,11 @@ async function getWord() {
         setWordDisplay("Easy");
     }
     DebugA("current word retrieved: " + currentWord);
+
+    //Take this out later
+    newWord();
 }
 
 logIn();
-addAllAnswers();
-fakeUsers();
-newWord();
+populateQuestionsLogArray();
 getWord();

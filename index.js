@@ -48,6 +48,12 @@ apiRouter.post('/newWord', (req, res) => {
   res.send(word);
 });
 
+// Ask Question
+apiRouter.post('/askQuestion', (req, res) => {
+  answer = askQuestion(req.body);
+  res.send(answer);
+});
+
 // SubmitScore
 apiRouter.post('/score', (req, res) => {
   updateScores(req.body, scores);
@@ -85,5 +91,24 @@ function setWord(newWord) {
 
 function updateScores(newScore) {
   var index = peoples.findIndex(p => p.attr1 == "john");
+}
+
+function askQuestion(questionItem) {
+  answerItem = questionItem;
+
+  answerItem.answer = "yes";
+  if(Math.random() < 0.33) {
+      answerItem.answer = "no";
+  } else if (Math.random() < 0.5) {
+      answerItem.answer = "maybe";
+  }
+
+  let validQuestion = true;
+  if(validQuestion) {
+
+  }
+
+  questionsLog.push(answerItem);
+  return answerItem;
 }
 
