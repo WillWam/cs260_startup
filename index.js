@@ -71,6 +71,7 @@ app.listen(port, () => {
 
 // The high scores are saved in memory and disappear whenever the service is restarted.
 let scores = [];
+let users = [];
 let previousWords = [];
 let questionsLog = [];
 let word = "";

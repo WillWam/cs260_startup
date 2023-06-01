@@ -36,7 +36,7 @@ function pushUniquePlayer(username) {
 }
 
 function addActivePlayer(username) {
-    DebugA("addActivePlayer: " + username);
+    // DebugA("addActivePlayer: " + username);
 
     const activeUsersUl = document.getElementById("active-players-ul");
     const newUserItem = document.createElement("SECTION");
@@ -52,7 +52,7 @@ function addAllActivePlayers() {
 
     activeUsersUl.innerHTML = "";
     playerInfoTitle.innerHTML = "Active Players: " + String(activePlayers.length);
-    DebugA(activePlayers);
+    // DebugA(activePlayers);
 
     activePlayers.forEach((player) => addActivePlayer(player));
 }
@@ -199,3 +199,4 @@ async function getWord() {
 logIn();
 populateQuestionsLogArray();
 getWord();
+fakeUsers();
