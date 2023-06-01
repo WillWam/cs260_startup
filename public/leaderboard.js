@@ -6,15 +6,14 @@ function DebugA(logMessage) {
 }
 
 let leaderboardEntries = [
-    // {
-    //     username: "Test_username",
-    //     totalWords: 25,
-    //     easyWords: 6,
-    //     mediumWords: 8,
-    //     hardWords: 11,
-    //     joinDate: "5/24/23"
-    // },
-    
+    {
+        username: "Test_username",
+        totalWords: 25,
+        easyWords: 6,
+        mediumWords: 8,
+        hardWords: 11,
+        joinDate: "5/24/23"
+    },
 ]
 
 function addLeaderboardEntry(entry) {
@@ -62,10 +61,6 @@ function addAllLeaderboardEntries() {
     leaderboardTable.innerHTML = "";
 
     leaderboardEntries.forEach((entry) => addLeaderboardEntry(entry));
-}
-
-function populateLeaderboardEntries() {
-
 }
 
 
@@ -122,6 +117,15 @@ async function fakeEntries() {
     }
 }
 
+async function populateLeaderboardEntries() {
+    DebugA("populate leaderboard entries");
+    const response = await fetch('/api/scores');
+    DebugA(response);
+    leaderboardEntries = await response.json();
+    DebugA(leaderboardEntries);
+    addAllLeaderboardEntries();
+
+}
+
 logIn();
-addAllLeaderboardEntries();
-fakeEntries();
+populateLeaderboardEntries();

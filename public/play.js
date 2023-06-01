@@ -99,11 +99,13 @@ function pushUniqueQuestion(questionItem) {
     localStorage.setItem("latestQuestion", JSON.stringify(questionItem));
 }
 
-function populateQuestionsLogArray() {
-    questionsLog = [];
-    if(localStorage.getItem("latestQuestion") != null) {
-        questionsLog.push(JSON.parse(localStorage.getItem("latestQuestion")));
-    }
+async function populateQuestionsLogArray() {
+    DebugA("populate Question Log array");
+    const response = await fetch('/api/questionLog');
+    DebugA(response);
+    questionsLog = await response.json();
+    DebugA(questionsLog);
+    addAllAnswers();
 }
 
 function addAnswer(question, answer, username) {
@@ -121,8 +123,6 @@ function addAnswer(question, answer, username) {
 
 function addAllAnswers() {
     DebugA("add All Answers");
-
-    // populateQuestionsLogArray();
 
     const answerLogUl = document.getElementById("answer-log-ul");
     const questionsAnswered = document.getElementById("questions-answered");
