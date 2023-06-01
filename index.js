@@ -49,7 +49,7 @@ apiRouter.post('/score', (req, res) => {
 });
 
 // Set Word
-apiRouter.post('/word', (req, res) => {
+apiRouter.post('/newWord', (req, res) => {
   setWord(req.body);
 });
 
@@ -85,5 +85,4 @@ function setWord(newWord) {
 function updateScores(newScore) {
   var index = peoples.findIndex(p => p.attr1 == "john");
 }
-
 

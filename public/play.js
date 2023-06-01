@@ -151,13 +151,36 @@ async function fakeUsers() {
     }
 }
 
-function setWordDisplay(difficulty) {
+async function setWordDisplay(difficulty) {
     const difficultyDisplay = document.getElementById("difficulty-display");
     difficultyDisplay.textContent = "Difficulty: " + difficulty;
     difficultyDisplay.setAttribute("class",difficulty);
+    DebugA("word dif set to " + difficulty);
+}
+
+async function newWord() {
+    const response = await fetch("https://random-word-api.vercel.app/api?words=1");
+    newWord = await response.json();
+    DebugA("New word to be set: " + newWord);
+
+    const responseSetWord = await fetch('/api/newWord', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(newWord),
+    });
+
+    newWord = String(newWord);
+
+    if(newWord.length > 7) {
+        setWordDisplay("Hard");
+    } else if(newWord.length > 5) {
+        setWordDisplay("Medium");
+    } else {
+        setWordDisplay("Easy");
+    }
 }
 
 logIn();
 addAllAnswers();
 fakeUsers();
-setWordDisplay("Medium");
+newWord();
