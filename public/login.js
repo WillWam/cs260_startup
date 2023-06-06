@@ -91,18 +91,25 @@ function setButton() {
 }
 
 
-function pressLogIn() {
+async function pressLogIn() {
     DebugA("pressLogin")
     const usernameInput = document.getElementById("username");
     localStorage.setItem("username", usernameInput.value);
+    // let response = await fetch('/api/login');
+    // response = await response.json();
+    // DebugA("username response: " + response);
+    // localStorage.setItem("username", response);
 
     window.location.href = "play.html";
 }
 
-function pressSignUp() {
+async function pressSignUp() {
     DebugA("pressSignUp");
-    const usernameInput = document.getElementById("username-sign-up");
-    localStorage.setItem("username", usernameInput.value);
+    const usernameBar = document.getElementById("username-sign-up");
+    let usernameInput = usernameBar.value;
+    DebugA("input: " + usernameInput);
+    
+    localStorage.setItem("username", usernameInput);
 
     window.location.href = "play.html";
 }

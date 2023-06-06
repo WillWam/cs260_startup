@@ -33,7 +33,17 @@ apiRouter.get('/questionsLog', (_req, res) => {
 
 // Get Current Word
 apiRouter.get('/word', (_req, res) => {
-  res.send(word);
+  res.send(JSON.stringify(word));
+});
+
+// Log In
+apiRouter.get('/login', (_req, res) => {
+  res.send(JSON.stringify(username));
+});
+
+// Sign Up
+apiRouter.post('/signUp', (req, res) => {
+  res.send(username);
 });
 
 // Guess the word
@@ -74,7 +84,8 @@ let scores = [];
 let users = [];
 let previousWords = [];
 let questionsLog = [];
-let word = "";
+let word = "tempWord";
+let username = "TempUsername";
 
 // async function setWord() {
 //   const response = await openai.createCompletion({
@@ -87,7 +98,8 @@ let word = "";
 // }
 
 function setWord(newWord) {
-  return newWord;
+  // word = newWord.toLowerCase();
+  return JSON.stringify(word);
 }
 
 function updateScores(newScore) {
@@ -111,5 +123,14 @@ function askQuestion(questionItem) {
 
   questionsLog.push(answerItem);
   return answerItem;
+}
+
+function guessWord(rawWordGuess) {
+  wordGuess = rawWordGuess.trim().toLowerCase();
+  if(wordGuess === word) {
+    return true;
+  } else {
+    return false;
+  }
 }
 

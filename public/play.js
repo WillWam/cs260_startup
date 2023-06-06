@@ -16,6 +16,7 @@ let questionsLog = [
 function logIn() {
     DebugA("logIn");
     playerUsername = localStorage.getItem("username");
+    console.log("player username: " + playerUsername);
     const loggedInText = document.getElementById("logged-in-text");
     
     if(playerUsername != null) {
@@ -55,6 +56,50 @@ function addAllActivePlayers() {
     // DebugA(activePlayers);
 
     activePlayers.forEach((player) => addActivePlayer(player));
+}
+
+async function submitWordGuess() {
+    DebugA("submit word guess");
+
+    const wordGuessBar = document.getElementById("word-guess-bar");
+    let wordGuess = wordGuessBar.value;
+    wordGuessBar.value = "";
+
+    let displayUsername = "";
+    if(playerUsername === null) {
+      displayUsername = "Anonymous";
+    } else {
+      displayUsername = playerUsername;
+    }
+
+    let wordGuessItem = {
+        username: displayUsername,
+        word: wordGuess,
+    }
+
+    DebugA(wordGuessItem);
+    
+    let wordCorrectStatus = await fetch('/api/askQuestion', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(questionItem),
+    });
+    wordCorrectStatus = await wordCorrectStatus.json();
+    DebugA("answer returned: " + wordCorrectStatus);
+
+    if(wordCorrectStatus === true) {
+        wordGuessRight(wordGuessItem);
+    } else {
+        wordGuessWrong(wordGuessItem);
+    }
+}
+
+function wordGuessRight(wordGuessItem) {
+    DebugA("Word was guessed correctly: " + wordGuessItem.word + " by " + wordGuessItem.username);
+}
+
+function wordGuessWrong(wordGuessItem) {
+    DebugA("Word incorrect :( " + wordGuessItem.word + " by " + wordGuessItem.username);
 }
 
 async function submitQuestion() {
@@ -160,29 +205,29 @@ async function setWordDisplay(difficulty) {
 
 async function newWord() {
     const response = await fetch("https://random-word-api.vercel.app/api?words=1");
-    newWord = await response.json();
-    DebugA("New word to be set: " + newWord);
-
-    await newWord;
-    DebugA("here");
+    let newWordResponse = await response.json();
+    await newWordResponse.json();
+    DebugA("New word to be set: " + newWordResponse);
 
     const responseSetWord = await fetch('/api/newWord', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
-        body: JSON.stringify(newWord),
+        body: JSON.stringify(newWordResponse),
     });
 }
 
 async function getWord() {
     const response = await fetch('/api/word');
-    try {
-        currentWord = await response.json();
-    } catch {
-        await newWord();
-        currentWord = await response.json();
-    }
-    currentWord = String(currentWord);
+    currentWord = await response.json();
+    // try {
+        
+    // } catch(error) {
+    //     await newWord();
+    //     currentWord = await response.json();
+    //     console.log("catch");
+    // }
 
+    DebugA("current word retrieved: " + currentWord);
     if(currentWord.length > 7) {
         setWordDisplay("Hard");
     } else if(currentWord.length > 5) {
@@ -190,7 +235,6 @@ async function getWord() {
     } else {
         setWordDisplay("Easy");
     }
-    DebugA("current word retrieved: " + currentWord);
 
     //Take this out later
     newWord();
