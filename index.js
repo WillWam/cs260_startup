@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const db = require('./database.js');
+// import fetch from "node-fetch";
+
 // import { Configuration, OpenAIApi } from "openai";
 // const configuration = new Configuration({
 //     organization: "org-3dC7MN6e5XpOgNYTPXzybZZ2",
@@ -66,8 +68,8 @@ apiRouter.post('/guessWord', (req, res) => {
 });
 
 // Set New Word
-apiRouter.post('/newWord', (req, res) => {
-  let newWord = setNewWord();
+apiRouter.post('/newWord', async (req, res) => {
+  let newWord = await setNewWord();
   res.send(newWord);
 });
 
@@ -105,8 +107,7 @@ let username = "TempUsername";
 
 async function setNewWord(newWord) {
   // const response = await fetch("https://random-word-api.vercel.app/api?words=1");
-  // let newWordResponse = await response.json();
-  // return JSON.stringify(word);
+  // word = await response.json();
 
   if(word.length > 7) {
     difficulty = "Hard";
@@ -115,6 +116,10 @@ async function setNewWord(newWord) {
   } else {
     difficulty = "Easy";
   }
+
+  questionsLog = [];
+  
+  console.log("word set to " + word + " and dif " + difficulty);
 }
 
 function updateScores(newScore) {
@@ -135,7 +140,8 @@ async function askQuestion(questionItem) {
       difficulty: difficulty,
       guessedBy: answerItem.username,
       startDate: wordStartDate,
-      endDate: new Date(Date.now())
+      endDate: new Date(Date.now()),
+      questions: questionsLog
     }
     await db.addFinishedWord(finishedWordItem);
     setNewWord();

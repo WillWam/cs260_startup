@@ -117,7 +117,6 @@ async function submitQuestion() {
     }
 
     let questionItem = {
-        id: 1111,
         username: displayUsername,
         question: question,
         answer: "none",
