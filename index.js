@@ -57,8 +57,18 @@ apiRouter.get('/login', (_req, res) => {
 });
 
 // Sign Up
-apiRouter.post('/signUp', (req, res) => {
-  res.send(username);
+apiRouter.post('/signUp', async (req, res) => {
+  console.log("adding user " + req.body);
+  let usernameItem = {
+    username: req.body,
+    password: "umm none",
+    joinDate: new Date(Date.now()),
+    easy: 0,
+    medium: 0,
+    hard: 0
+  }
+  await db.addUser(usernameItem); 
+  res.send(usernameItem);
 });
 
 // Guess the word

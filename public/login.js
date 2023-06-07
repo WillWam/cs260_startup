@@ -110,6 +110,13 @@ async function pressSignUp() {
     DebugA("input: " + usernameInput);
     
     localStorage.setItem("username", usernameInput);
+    console.log("username input: " + usernameInput);
+
+    // await fetch('/api/signUp', {
+    //     method: 'POST',
+    //     headers: {'content-type': 'application/json'},
+    //     body: JSON.stringify(usernameInput),
+    // });
 
     window.location.href = "play.html";
 }

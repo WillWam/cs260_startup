@@ -80,3 +80,11 @@ For this deliverable I created an HTTP service to host my frontend and provide b
 - **Calls to third party endpoints** - The front end calls a random word generator API (https://random-word-api.vercel.app/api?words=1). Due to the hidden nature of the word for the game, the word is not displayed on screen but can currently be seen in the console in a console.log. 
 - **Backend service endpoints** - Endpoints are implemented for retrieving the log of previously asked qeustions and their answers, posting new questions to the log, getting the list of players' scores, setting the new word that users are supposed to be guessing, and guessing the word. 
 - **Frontend calls service endpoints** - The frontend calls the service endpoints in order to retrieve what the current secret word is, set a new secret word, load up the list of previously asked questions. 
+
+## DB deliverable
+
+For this deliverable I stored and retrieved data from MongoDB.
+
+- **MongoDB Atlas database created** - done!
+- **Endpoints for data** - Endpoints call functions such as askQuestion that now process the data and send it to and retrieve fromMongo.
+- **Stores data in MongoDB** - done!

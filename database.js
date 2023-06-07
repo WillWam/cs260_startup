@@ -29,12 +29,17 @@ async function getLeaderboard() {
 }
 
 async function getFinishedWords() {
-    const result = usersCollection.find();
+    const result = wordsCollection.find();
     return result.toArray();
 }
 
 async function addFinishedWord(wordItem) {
     const result = await wordsCollection.insertOne(wordItem);
+    return result;
+}
+
+async function addUser(usernameItem) {
+    const result = await usersCollection.insertOne(usernameItem);
     return result;
 }
 
@@ -55,4 +60,4 @@ async function addFinishedWord(wordItem) {
 
 // module.exports = { addScore, getHighScores };
 
-module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, };
+module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser};
