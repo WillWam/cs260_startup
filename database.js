@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, MongoMissingCredentialsError } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -54,3 +54,5 @@ async function addFinishedWord(wordItem) {
 // }
 
 // module.exports = { addScore, getHighScores };
+
+module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, };

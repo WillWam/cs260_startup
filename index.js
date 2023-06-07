@@ -72,8 +72,8 @@ apiRouter.post('/newWord', (req, res) => {
 });
 
 // Ask Question
-apiRouter.post('/askQuestion', (req, res) => {
-  answer = askQuestion(req.body);
+apiRouter.post('/askQuestion', async (req, res) => {
+  answer = await askQuestion(req.body);
   res.send(answer);
 });
 
@@ -89,7 +89,7 @@ let users = [];
 let previousWords = [];
 let questionsLog = [];
 let word = "tempWord";
-let difficulty = "hard";
+let difficulty = "Hard";
 let wordStartDate = new Date(Date.now());
 let username = "TempUsername";
 
@@ -121,11 +121,12 @@ function updateScores(newScore) {
   var index = peoples.findIndex(p => p.attr1 == "john");
 }
 
-function askQuestion(questionItem) {
+async function askQuestion(questionItem) {
   answerItem = questionItem;
+  console.log(answerItem.question + ", " + word + ", " + answerItem.question.toLowerCase().includes(word.toLowerCase()));
 
   //Check for correct word Guess
-  if(questionItem.question.toLowerCase().includes(word)) {
+  if(answerItem.question.toLowerCase().includes(word.toLowerCase())) {
     console.log("correct word guessed: " + word);
     answerItem.answer = "correct";
     answerItem.question = answerItem.username + " guessed the word: " + word + "!";
@@ -136,7 +137,7 @@ function askQuestion(questionItem) {
       startDate: wordStartDate,
       endDate: new Date(Date.now())
     }
-    db.addFinishedWord(finishedWordItem);
+    await db.addFinishedWord(finishedWordItem);
     setNewWord();
     return answerItem;
   }
