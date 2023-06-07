@@ -18,6 +18,14 @@ app.use(express.static('public'));
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
+//Say port details
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
 
 
 // Get Scores
@@ -36,6 +44,11 @@ apiRouter.get('/word', (_req, res) => {
   res.send(JSON.stringify(word));
 });
 
+// Get Current Difficulty
+apiRouter.get('/difficulty', (_req, res) => {
+  res.send(JSON.stringify(difficulty));
+});
+
 // Log In
 apiRouter.get('/login', (_req, res) => {
   res.send(JSON.stringify(username));
@@ -52,10 +65,10 @@ apiRouter.post('/guessWord', (req, res) => {
   res.send(wordCorrectStatus);
 });
 
-// Set Word
+// Set New Word
 apiRouter.post('/newWord', (req, res) => {
-  word = setWord(req.body);
-  res.send(word);
+  let newWord = setNewWord();
+  res.send(newWord);
 });
 
 // Ask Question
@@ -70,21 +83,14 @@ apiRouter.post('/score', (req, res) => {
   res.send(scores);
 });
 
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
 // The high scores are saved in memory and disappear whenever the service is restarted.
 let scores = [];
 let users = [];
 let previousWords = [];
 let questionsLog = [];
 let word = "tempWord";
+let difficulty = "hard";
+let wordStartDate = new Date(Date.now());
 let username = "TempUsername";
 
 // async function setWord() {
@@ -97,9 +103,18 @@ let username = "TempUsername";
 //   word = await response.json();
 // }
 
-function setWord(newWord) {
-  // word = newWord.toLowerCase();
-  return JSON.stringify(word);
+async function setNewWord(newWord) {
+  // const response = await fetch("https://random-word-api.vercel.app/api?words=1");
+  // let newWordResponse = await response.json();
+  // return JSON.stringify(word);
+
+  if(word.length > 7) {
+    difficulty = "Hard";
+  } else if(word.length > 5) {
+    difficulty = "Medium";
+  } else {
+    difficulty = "Easy";
+  }
 }
 
 function updateScores(newScore) {
@@ -109,6 +124,31 @@ function updateScores(newScore) {
 function askQuestion(questionItem) {
   answerItem = questionItem;
 
+  //Check for correct word Guess
+  if(questionItem.question.toLowerCase().includes(word)) {
+    console.log("correct word guessed: " + word);
+    answerItem.answer = "correct";
+    answerItem.question = answerItem.username + " guessed the word: " + word + "!";
+    let finishedWordItem = {
+      word: word,
+      difficulty: difficulty,
+      guessedBy: answerItem.username,
+      startDate: wordStartDate,
+      endDate: new Date(Date.now())
+    }
+    db.addFinishedWord(finishedWordItem);
+    setNewWord();
+    return answerItem;
+  }
+
+  //Check for invalid question
+  let validQuestion = true;
+  if(validQuestion === false) {
+    answerItem.answer = "invalid";
+    return answerItem;
+  }
+
+  //Answer the Question normally
   answerItem.answer = "yes";
   if(Math.random() < 0.33) {
       answerItem.answer = "no";
@@ -116,21 +156,16 @@ function askQuestion(questionItem) {
       answerItem.answer = "maybe";
   }
 
-  let validQuestion = true;
-  if(validQuestion) {
-
-  }
-
   questionsLog.push(answerItem);
   return answerItem;
 }
 
-function guessWord(rawWordGuess) {
-  wordGuess = rawWordGuess.trim().toLowerCase();
-  if(wordGuess === word) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// function guessWord(rawWordGuess) {
+//   wordGuess = rawWordGuess.trim().toLowerCase();
+//   if(wordGuess === word) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 

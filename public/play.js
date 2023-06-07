@@ -197,6 +197,8 @@ async function fakeUsers() {
 }
 
 async function setWordDisplay(difficulty) {
+    difficulty = await fetch("/api/difficulty");
+    difficulty = await difficulty.json();
     const difficultyDisplay = document.getElementById("difficulty-display");
     difficultyDisplay.textContent = "Difficulty: " + difficulty;
     difficultyDisplay.setAttribute("class",difficulty);
@@ -206,7 +208,6 @@ async function setWordDisplay(difficulty) {
 async function newWord() {
     const response = await fetch("https://random-word-api.vercel.app/api?words=1");
     let newWordResponse = await response.json();
-    await newWordResponse.json();
     DebugA("New word to be set: " + newWordResponse);
 
     const responseSetWord = await fetch('/api/newWord', {
@@ -243,4 +244,4 @@ async function getWord() {
 logIn();
 populateQuestionsLogArray();
 getWord();
-fakeUsers();
+// fakeUsers();
