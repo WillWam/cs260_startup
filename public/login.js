@@ -59,14 +59,16 @@ function checkSignUpUsername(value) {
 
 function checkSignUpPassword(value) {
     DebugA("checkSignUpPassword");
-    const userRegex = new RegExp("^[A-Za-z][A-Za-z0-9_]{5,19}$");
-    if(userRegex.test(value)) {
-        //Password valid :D
-        passwordValid = true;
-    } else {
-        //Password invalid :(
-        passwordValid = false;
-    }
+    // const userRegex = new RegExp("^[A-Za-z][A-Za-z0-9_]{5,19}$");
+    // if(userRegex.test(value)) {
+    //     //Password valid :D
+    //     passwordValid = true;
+    // } else {
+    //     //Password invalid :(
+    //     passwordValid = false;
+    // }
+
+    passwordValid = true;
 
     this.setButton();
 }

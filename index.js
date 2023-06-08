@@ -47,7 +47,9 @@ apiRouter.get('/scores', (_req, res) => {
 });
 
 // Get Previous Questions Log
-apiRouter.get('/questionsLog', (_req, res) => {
+apiRouter.get('/questionsLog', async (_req, res) => {
+  questionsLog = await DB.getQuestionsLog();
+  console.log("querstions log: " + questionsLog);
   res.send(questionsLog);
 });
 
@@ -263,7 +265,8 @@ async function askQuestion(questionItem) {
       answerItem.answer = "maybe";
   }
 
-  questionsLog.push(answerItem);
+  // questionsLog.push(answerItem);
+  DB.addQuestion(answerItem);
   return answerItem;
 }
 

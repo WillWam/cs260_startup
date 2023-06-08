@@ -285,6 +285,7 @@ input:focus {
  #log-out-button {
     justify-content: center;
     align-items: center;
+    margin-bottom: 25px;
  }
 
  #login-button:disabled, #sign-up-button:disabled {

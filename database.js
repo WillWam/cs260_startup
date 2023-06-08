@@ -9,6 +9,7 @@ const db = client.db('werecapone');
 const scoreCollection = db.collection('score');
 const usersCollection = db.collection('users');
 const wordsCollection = db.collection('words');
+const questionsCollection = db.collection('questions');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -53,6 +54,11 @@ async function getLeaderboard() {
     return result.toArray();
 }
 
+async function getQuestionsLog() {
+    const result = questionsCollection.find();
+    return result.toArray();
+}
+
 async function getFinishedWords() {
     const result = wordsCollection.find();
     return result.toArray();
@@ -68,21 +74,9 @@ async function addUser(usernameItem) {
     return result;
 }
 
-// async function addScore(score) {
-//   const result = await scoreCollection.insertOne(score);
-//   return result;
-// }
+async function addQuestion(questionItem) {
+    const result = await questionsCollection.insertOne(questionItem);
+    return result;
+}
 
-// function getHighScores() {
-//   const query = { score: { $gt: 0, $lt: 900 } };
-//   const options = {
-//     sort: { score: -1 },
-//     limit: 10,
-//   };
-//   const cursor = scoreCollection.find(query, options);
-//   return cursor.toArray();
-// }
-
-// module.exports = { addScore, getHighScores };
-
-module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser, getUser, getUserByToken, createUser};
+module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser, getUser, getUserByToken, createUser, addQuestion, getQuestionsLog};
