@@ -36,7 +36,7 @@
         
 
         <main>
-            <div id="login">
+            <div id="login" style="display:none;">
             <h3 id="login-text">Login</h3>
             <div class="panel" id="login-panel">
             <div id="login-box">
@@ -74,6 +74,15 @@
                     <p id="no-account">Already have an account?</p>
                     <p id="click-text-sign-up" onclick="pullUpLogin()">Log In</p>
                 </div>
+                </div>
+            </div>
+
+            <div id="already-signed-in" style="display:block;">
+                <div class="panel" id="log-out-panel">
+                    <div id="login-box">
+                        <label id="username-label" for="username">Logged In - </label>
+                        <button class="basic-button" id="log-out-button" type="submit" onClick="pressLogOut()">Log Out</button>
+                    </div>
                 </div>
             </div>
         </main>

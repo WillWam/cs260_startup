@@ -1,8 +1,9 @@
 const { MongoClient, MongoMissingCredentialsError } = require('mongodb');
+const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-// const url = `mongodb+srv://werecapone:Werecapone100%@cluster0.ccakuej.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
 const db = client.db('werecapone');
 const scoreCollection = db.collection('score');
@@ -17,6 +18,30 @@ const wordsCollection = db.collection('words');
   console.log(`Unable to connect to database with ${url} because ${ex.message}`);
   process.exit(1);
 });
+
+function getUser(username) {
+    return usersCollection.findOne({ username: username });
+  }
+  
+  function getUserByToken(token) {
+    return usersCollection.findOne({ token: token });
+  }
+  
+  async function createUser(username, password) {
+    // Hash the password before we insert it into the database
+    const passwordHash = await bcrypt.hash(password, 10);
+  
+    const user = {
+      username: username,
+      password: passwordHash,
+      token: uuid.v4(),
+
+
+    };
+    await usersCollection.insertOne(user);
+  
+    return user;
+  }
 
 async function getLeaderboard() {
     const query = { score: { $gt: 0, $lt: 20000 } };
@@ -60,4 +85,4 @@ async function addUser(usernameItem) {
 
 // module.exports = { addScore, getHighScores };
 
-module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser};
+module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser, getUser, getUserByToken, createUser};
