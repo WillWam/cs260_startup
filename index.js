@@ -108,6 +108,7 @@ apiRouter.post('/score', (req, res) => {
 
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
+  console.log("create " + req.body.username);
   if (await DB.getUser(req.body.username)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
@@ -166,6 +167,22 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
+// Default error handler
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
+
+
+
 // The high scores are saved in memory and disappear whenever the service is restarted.
 let scores = [];
 let users = [];
@@ -185,6 +202,8 @@ let username = "TempUsername";
 //   });
 //   word = await response.json();
 // }
+
+
 
 async function setNewWord(newWord) {
   // const response = await fetch("https://random-word-api.vercel.app/api?words=1");

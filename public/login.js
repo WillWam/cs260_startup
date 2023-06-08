@@ -11,15 +11,28 @@ let passwordValid = true;
 function pullUpSignUp() {
     const signUp = document.getElementById("sign-up");
     const login = document.getElementById("login");
+    const logOut = document.getElementById("already-signed-in");
     signUp.style.display = "block";
     login.style.display = "none";
+    logOut.style.display = "none";
 }
 
 function pullUpLogin() {
     const signUp = document.getElementById("sign-up");
     const login = document.getElementById("login");
+    const logOut = document.getElementById("already-signed-in");
     signUp.style.display = "none";
     login.style.display = "block";
+    logOut.style.display = "none";
+}
+
+function pullUpLogOut() {
+    const signUp = document.getElementById("sign-up");
+    const login = document.getElementById("login");
+    const logOut = document.getElementById("already-signed-in");
+    signUp.style.display = "none";
+    login.style.display = "none";
+    logOut.style.display = "block";
 }
 
 function checkLoginUsername(value) {
@@ -171,11 +184,17 @@ async function pressLogOut() {
 function logIn() {
     let username = localStorage.getItem("username");
     const loggedInText = document.getElementById("logged-in-text");
+    const loggedInLabel = document.getElementById("logged-in-label");
 
     if(username) {
         loggedInText.innerHTML = "Logged in - " + username;
+        loggedInLabel.innerHTML = "Logged in - " + username;
+
+        pullUpLogOut();
     } else {
         loggedInText.innerHTML = "Not Logged In";
+
+        pullUpLogin();
     }
 }
 
