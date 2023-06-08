@@ -41,8 +41,8 @@ app.listen(port, () => {
 
 
 // Get Scores
-apiRouter.get('/scores', (_req, res) => {
-  scores = DB.getLeaderboard();
+apiRouter.get('/scores', async (_req, res) => {
+  scores = await DB.getLeaderboard();
   res.send(scores);
 });
 
@@ -69,20 +69,21 @@ apiRouter.get('/difficulty', (_req, res) => {
 //   res.send(JSON.stringify(username));
 // });
 
-// Sign Up
-apiRouter.post('/signUp', async (req, res) => {
-  console.log("adding user " + req.body);
-  let usernameItem = {
-    username: req.body,
-    password: "umm none",
-    joinDate: new Date(Date.now()),
-    easy: 0,
-    medium: 0,
-    hard: 0
-  }
-  await DB.addUser(usernameItem); 
-  res.send(usernameItem);
-});
+// // Sign Up
+// apiRouter.post('/signUp', async (req, res) => {
+//   console.log("adding user " + req.body);
+//   let usernameItem = {
+//     username: req.body,
+//     password: "umm none",
+//     joinDate: new Date(Date.now()),
+//     easy: 0,
+//     medium: 0,
+//     hard: 0,
+//     total: 0,
+//   }
+//   await DB.addUser(usernameItem); 
+//   res.send(usernameItem);
+// });
 
 // Guess the word
 apiRouter.post('/guessWord', (req, res) => {

@@ -39,7 +39,8 @@ function getUser(username) {
         joinDate: new Date(Date.now()),
         easy: 0,
         medium: 0,
-        hard: 0
+        hard: 0,
+        total: 0,
     };
     await usersCollection.insertOne(user);
   
@@ -52,7 +53,7 @@ async function getLeaderboard() {
         sort: { score: -1 },
         limit: 1000,
     };
-    const result = usersCollection.find(query, options);
+    const result = usersCollection.find();
     return result.toArray();
 }
 

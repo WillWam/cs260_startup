@@ -30,23 +30,24 @@ function addLeaderboardEntry(entry) {
     newRow.appendChild(newUsername);
     const newWords = tdTemplate.cloneNode(true);
     newWords.setAttribute("class", "leaderboard-words");
-    newWords.innerHTML = entry.totalWords;
+    newWords.innerHTML = Number(entry.total);
     newRow.appendChild(newWords);
     const newEasy = tdTemplate.cloneNode(true);
     newEasy.setAttribute("class", "leaderboard-easy");
-    newEasy.innerHTML = entry.easyWords;
+    newEasy.innerHTML = entry.easy;
     newRow.appendChild(newEasy);
     const newMedium = tdTemplate.cloneNode(true);
     newMedium.setAttribute("class", "leaderboard-medium");
-    newMedium.innerHTML = entry.mediumWords;
+    newMedium.innerHTML = entry.medium;
     newRow.appendChild(newMedium);
     const newHard = tdTemplate.cloneNode(true);
     newHard.setAttribute("class", "leaderboard-hard");
-    newHard.innerHTML = entry.hardWords;
+    newHard.innerHTML = entry.hard;
     newRow.appendChild(newHard);
     const newDate = tdTemplate.cloneNode(true);
     newDate.setAttribute("class", "leaderboard-date");
-    newDate.innerHTML = entry.joinDate;
+    let formattedDate = new Date(entry.joinDate).toLocaleDateString();
+    newDate.innerHTML = formattedDate;
     newRow.appendChild(newDate);
     
 
@@ -120,11 +121,9 @@ async function fakeEntries() {
 async function populateLeaderboardEntries() {
     DebugA("populate leaderboard entries");
     const response = await fetch('/api/scores');
-    DebugA(response);
     leaderboardEntries = await response.json();
-    DebugA(leaderboardEntries);
+    DebugA("leaderboard entries: " + leaderboardEntries);
     addAllLeaderboardEntries();
-
 }
 
 logIn();
