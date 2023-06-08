@@ -105,19 +105,6 @@ function setButton() {
     }
 }
 
-
-// async function pressLogIn() {
-//     DebugA("pressLogin")
-//     const usernameInput = document.getElementById("username");
-//     localStorage.setItem("username", usernameInput.value);
-//     // let response = await fetch('/api/login');
-//     // response = await response.json();
-//     // DebugA("username response: " + response);
-//     // localStorage.setItem("username", response);
-
-//     window.location.href = "play.html";
-// }
-
 async function pressLogIn() {
     const username = document.querySelector('#username')?.value;
     const password = document.querySelector('#password')?.value;
@@ -163,18 +150,6 @@ async function pressSignUp() {
         // msgModal.show();
     }
 }
-
-// async function pressSignUp() {
-//     DebugA("pressSignUp");
-//     const usernameBar = document.getElementById("username-sign-up");
-//     let usernameInput = usernameBar.value;
-//     DebugA("input: " + usernameInput);
-    
-//     localStorage.setItem("username", usernameInput);
-//     console.log("username input: " + usernameInput);
-
-//     window.location.href = "play.html";
-// }
 
 async function pressLogOut() {
     localStorage.removeItem('username');

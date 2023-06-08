@@ -33,11 +33,13 @@ function getUser(username) {
     const passwordHash = await bcrypt.hash(password, 10);
   
     const user = {
-      username: username,
-      password: passwordHash,
-      token: uuid.v4(),
-
-
+        username: username,
+        password: passwordHash,
+        token: uuid.v4(),
+        joinDate: new Date(Date.now()),
+        easy: 0,
+        medium: 0,
+        hard: 0
     };
     await usersCollection.insertOne(user);
   

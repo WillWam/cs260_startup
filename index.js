@@ -187,13 +187,10 @@ function setAuthCookie(res, authToken) {
 
 // The high scores are saved in memory and disappear whenever the service is restarted.
 let scores = [];
-let users = [];
-let previousWords = [];
 let questionsLog = [];
 let word = "tempWord";
 let difficulty = "Hard";
 let wordStartDate = new Date(Date.now());
-let username = "TempUsername";
 
 // async function setWord() {
 //   const response = await openai.createCompletion({
