@@ -91,42 +91,89 @@ function setButton() {
 }
 
 
-async function pressLogIn() {
-    DebugA("pressLogin")
-    const usernameInput = document.getElementById("username");
-    localStorage.setItem("username", usernameInput.value);
-    // let response = await fetch('/api/login');
-    // response = await response.json();
-    // DebugA("username response: " + response);
-    // localStorage.setItem("username", response);
+// async function pressLogIn() {
+//     DebugA("pressLogin")
+//     const usernameInput = document.getElementById("username");
+//     localStorage.setItem("username", usernameInput.value);
+//     // let response = await fetch('/api/login');
+//     // response = await response.json();
+//     // DebugA("username response: " + response);
+//     // localStorage.setItem("username", response);
 
-    window.location.href = "play.html";
+//     window.location.href = "play.html";
+// }
+
+async function pressLogIn() {
+    const username = document.querySelector('#username')?.value;
+    const password = document.querySelector('#password')?.value;
+    const response = await fetch(`/api/auth/login`, {
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    if (response.ok) {
+        localStorage.setItem('username', username);
+        window.location.href = 'play.html';
+    } else {
+        // const body = await response.json();
+        // const modalEl = document.querySelector('#msgModal');
+        // modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+        // const msgModal = new bootstrap.Modal(modalEl, {});
+        // msgModal.show();
+    }
 }
 
 async function pressSignUp() {
-    DebugA("pressSignUp");
-    const usernameBar = document.getElementById("username-sign-up");
-    let usernameInput = usernameBar.value;
-    DebugA("input: " + usernameInput);
+    const username = document.querySelector('#username-sign-up')?.value;
+    const password = document.querySelector('#password-sign-up')?.value;
+    const response = await fetch(`/api/auth/create`, {
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    if (response.ok) {
+        localStorage.setItem('username', username);
+        window.location.href = 'play.html';
+    } else {
+        // const body = await response.json();
+        // const modalEl = document.querySelector('#msgModal');
+        // modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+        // const msgModal = new bootstrap.Modal(modalEl, {});
+        // msgModal.show();
+    }
+}
+
+// async function pressSignUp() {
+//     DebugA("pressSignUp");
+//     const usernameBar = document.getElementById("username-sign-up");
+//     let usernameInput = usernameBar.value;
+//     DebugA("input: " + usernameInput);
     
-    localStorage.setItem("username", usernameInput);
-    console.log("username input: " + usernameInput);
+//     localStorage.setItem("username", usernameInput);
+//     console.log("username input: " + usernameInput);
 
-    // await fetch('/api/signUp', {
-    //     method: 'POST',
-    //     headers: {'content-type': 'application/json'},
-    //     body: JSON.stringify(usernameInput),
-    // });
+//     window.location.href = "play.html";
+// }
 
-    window.location.href = "play.html";
+async function pressLogOut() {
+    localStorage.removeItem('username');
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'));
 }
 
 function logIn() {
-    playerUsername = localStorage.getItem("username");
+    let username = localStorage.getItem("username");
     const loggedInText = document.getElementById("logged-in-text");
 
-    if(playerUsername != null) {
-        loggedInText.innerHTML = "Logged in - " + playerUsername;
+    if(username) {
+        loggedInText.innerHTML = "Logged in - " + username;
     } else {
         loggedInText.innerHTML = "Not Logged In";
     }
