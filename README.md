@@ -97,3 +97,12 @@ For this deliverable I added user registration and authentication.
 - **existing user** - Verifies the user's name and password from data stored in the database
 - **Use MongoDB to store credentials** - done!
 - **Restricts functionality** - Your scores will never be saved/incremented unless you're logged in
+
+## WebSocket deliverable
+
+For this deliverable I enabled realtime reporting of active players when a user joins
+
+- **Backend listens for WebSocket connection** - done!
+- **Frontend makes WebSocket connection** - done!
+- **Data sent over WebSocket connection** - done!
+- **WebSocket data displayed** - When a new player joins (becomes active on the site), their username will pop up on all other users' active players tab

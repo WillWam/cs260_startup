@@ -28,9 +28,6 @@ function logIn() {
 
     pushUniquePlayer(playerUsername);
     addAllActivePlayers();
-
-    // Display as active to other users
-    broadcastEvent(playerUsername, GameEndEvent, newScore);
 }
 
 function pushUniquePlayer(username) {
@@ -253,21 +250,29 @@ async function getWord() {
 
 
 async function configureWebSocket() {
+    DebugA("configure websocket");
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
     socket.onopen = (event) => {
-      socketAddPlayer(playerUsername);
+    //  socketAddPlayer(playerUsername);
+        broadcastEvent(playerUsername, "player joined", playerUsername);
     };
     socket.onclose = (event) => {
-      socketRemovePlayer(playerUsername);
+    //   socketRemovePlayer(playerUsername);
+        broadcastEvent(playerUsername, "player left", playerUsername);
     };
     socket.onmessage = async (event) => {
-      const msg = JSON.parse(await event.data.text());
-      if (msg.type === GameEndEvent) {
-        displayMsg('player', msg.from, `scored ${msg.value.score}`);
-      } else if (msg.type === GameStartEvent) {
-        displayMsg('player', msg.from, `started a new game`);
-      }
+        const msg = JSON.parse(await event.data.text());
+    //   if (msg.type === GameEndEvent) {
+    //     displayMsg('player', msg.from, `scored ${msg.value.score}`);
+    //   } else if (msg.type === GameStartEvent) {
+    //     displayMsg('player', msg.from, `started a new game`);
+    //   }
+        if(msg.type === "player joined") {
+            socketAddPlayer(msg.value);
+        } else if(msg.type === "player left") {
+            socketRemovePlayer(msg.value);
+        }
     };
 }
 
@@ -278,27 +283,35 @@ function displayMsg(cls, from, msg) {
 }
 
 function socketAddPlayer(username) {
+    DebugA("Socket add player");
     pushUniquePlayer(username);
     addAllActivePlayers();
 }
 
 function socketRemovePlayer(username) {
+    DebugA("Socket remove player");
     removeActivePlayer(username);
     addAllActivePlayers();
 }
 
 function broadcastEvent(from, type, value) {
+    DebugA("broadcastEvent " + from + type + value);
     const event = {
       from: from,
       type: type,
       value: value,
     };
+    DebugA(JSON.stringify(event));
     socket.send(JSON.stringify(event));
 }
 
+async function initialize() {
+    await configureWebSocket();
+    populateQuestionsLogArray();
+    getWord();
 
+    logIn();
+}
 
-logIn();
-populateQuestionsLogArray();
-getWord();
+initialize();
 // fakeUsers();
