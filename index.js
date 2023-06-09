@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
@@ -33,10 +34,6 @@ app.use(`/api`, apiRouter);
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
-});
-//Say port details
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
 });
 
 
@@ -268,6 +265,13 @@ async function askQuestion(questionItem) {
   DB.addQuestion(answerItem);
   return answerItem;
 }
+
+
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+peerProxy(httpService);
 
 // function guessWord(rawWordGuess) {
 //   wordGuess = rawWordGuess.trim().toLowerCase();
