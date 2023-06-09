@@ -244,6 +244,7 @@ async function askQuestion(questionItem) {
       questions: questionsLog
     }
     await DB.addFinishedWord(finishedWordItem);
+    await DB.incrementScore(answerItem.username, difficulty);
     setNewWord();
     return answerItem;
   }

@@ -2,6 +2,7 @@ const { MongoClient, MongoMissingCredentialsError } = require('mongodb');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const config = require('./dbConfig.json');
+const { diff } = require('semver');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
@@ -82,4 +83,23 @@ async function addQuestion(questionItem) {
     return result;
 }
 
-module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser, getUser, getUserByToken, createUser, addQuestion, getQuestionsLog};
+async function incrementScore(currentUsername, difficulty) {
+    let newScore;
+    if(difficulty === "Easy") {
+        newScore = db.usersCollection.findOne( {username: currentUsername} ).easy + 1;
+        db.usersCollection.updateOne( { username: currentUsername }, { $set: { easy: newScore } } ); 
+    } else if(difficulty === "Medium") {
+        newScore = db.usersCollection.findOne( {username: currentUsername} ).medium + 1;
+        db.usersCollection.updateOne( { username: currentUsername }, { $set: { medium: newScore } } ); 
+    } else if(difficulty === "Hard") {
+        newScore = db.usersCollection.findOne( {username: currentUsername} ).hard + 1;
+        console.log("new score: " + newScore);
+        db.usersCollection.updateOne( { username: currentUsername }, { $set: { hard: newScore } } ); 
+    }
+
+    let newTotalScore = db.usersCollection.findOne( {username: currentUsername} ).total + 1;
+
+    db.usersCollection.updateOne( { username: currentUsername }, { $set: { total: newTotalScore } } ); 
+}
+
+module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser, getUser, getUserByToken, createUser, addQuestion, getQuestionsLog, incrementScore};
