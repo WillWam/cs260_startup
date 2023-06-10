@@ -243,7 +243,9 @@ async function askQuestion(questionItem) {
     console.log("");
     await DB.addFinishedWord(finishedWordItem);
     await DB.clearQuestionsLog();
-    await DB.incrementScore(answerItem.username, difficulty);
+    if(answerItem.username !== "Anonymous") {
+      await DB.incrementScore(answerItem.username, difficulty);
+    }
     setNewWord();
     return answerItem;
   }
