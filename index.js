@@ -240,7 +240,9 @@ async function askQuestion(questionItem) {
       endDate: new Date(Date.now()),
       questions: questionsLog
     }
+    console.log("");
     await DB.addFinishedWord(finishedWordItem);
+    await DB.clearQuestionsLog();
     await DB.incrementScore(answerItem.username, difficulty);
     setNewWord();
     return answerItem;

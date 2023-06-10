@@ -54,21 +54,28 @@ async function getLeaderboard() {
         sort: { score: -1 },
         limit: 1000,
     };
-    const result = usersCollection.find();
+    const result = await usersCollection.find();
     return result.toArray();
 }
 
 async function getQuestionsLog() {
-    const result = questionsCollection.find();
+    const result = await questionsCollection.find();
     return result.toArray();
 }
 
+async function clearQuestionsLog() {
+    console.log("remove questions log");
+    questionsCollection.deleteMany();
+    return;
+}
+
 async function getFinishedWords() {
-    const result = wordsCollection.find();
+    const result = await wordsCollection.find();
     return result.toArray();
 }
 
 async function addFinishedWord(wordItem) {
+    console.log("add finished word");
     const result = await wordsCollection.insertOne(wordItem);
     return result;
 }
@@ -84,22 +91,46 @@ async function addQuestion(questionItem) {
 }
 
 async function incrementScore(currentUsername, difficulty) {
+    console.log("increase score " + currentUsername);
     let newScore;
+    let newTotalScore;
     if(difficulty === "Easy") {
-        newScore = db.usersCollection.findOne( {username: currentUsername} ).easy + 1;
-        db.usersCollection.updateOne( { username: currentUsername }, { $set: { easy: newScore } } ); 
+        let returnedUser = await usersCollection.findOne( {username: currentUsername} );
+        newScore = returnedUser.easy + 1;
+        if(isNaN(newScore)) {
+            newScore = 1;
+        }
+
+        await usersCollection.updateOne( { username: currentUsername }, { $set: { easy: newScore } } ); 
     } else if(difficulty === "Medium") {
-        newScore = db.usersCollection.findOne( {username: currentUsername} ).medium + 1;
-        db.usersCollection.updateOne( { username: currentUsername }, { $set: { medium: newScore } } ); 
+        let returnedUser = await usersCollection.findOne( {username: currentUsername} );
+        newScore = returnedUser.medium + 1;
+        if(isNaN(newScore)) {
+            newScore = 1;
+        }
+
+        await usersCollection.updateOne( { username: currentUsername }, { $set: { medium: newScore } } ); 
     } else if(difficulty === "Hard") {
-        newScore = db.usersCollection.findOne( {username: currentUsername} ).hard + 1;
+        let returnedUser = await usersCollection.findOne( {username: currentUsername} );
+        newScore = returnedUser.hard + 1;
+        if(isNaN(newScore)) {
+            newScore = 1;
+        }
+
         console.log("new score: " + newScore);
-        db.usersCollection.updateOne( { username: currentUsername }, { $set: { hard: newScore } } ); 
+        await usersCollection.updateOne( { username: currentUsername }, { $set: { hard: newScore } } ); 
     }
 
-    let newTotalScore = db.usersCollection.findOne( {username: currentUsername} ).total + 1;
+    let returnedTotalUser = await usersCollection.findOne( {username: currentUsername} );
+    if(isNaN(newTotalScore)) {
+        newTotalScore = 0;
+    }
+    newTotalScore = returnedTotalUser.total + 1;
+    if(newTotalScore !== (returnedTotalUser.easy + returnedTotalUser.medium + returnedTotalUser.hard)) {
+        newTotalScore = returnedTotalUser.easy + returnedTotalUser.medium + returnedTotalUser.hard;
+    }
 
-    db.usersCollection.updateOne( { username: currentUsername }, { $set: { total: newTotalScore } } ); 
+    usersCollection.updateOne( { username: currentUsername }, { $set: { total: newTotalScore } } ); 
 }
 
-module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser, getUser, getUserByToken, createUser, addQuestion, getQuestionsLog, incrementScore};
+module.exports = {getLeaderboard, getFinishedWords, addFinishedWord, addUser, getUser, getUserByToken, createUser, addQuestion, getQuestionsLog, incrementScore, clearQuestionsLog};
