@@ -169,7 +169,7 @@ function logIn() {
 
         pullUpLogOut();
     } else {
-        loggedInText.innerHTML = "Not Logged In";
+        loggedInText.innerHTML = "Not Logged In (Anonymous)";
 
         pullUpLogin();
     }
