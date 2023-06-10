@@ -4,6 +4,19 @@ function DebugA(logMessage) {
         console.log(logMessage);
     }
 }
+async function foreverRefresh() {
+    while(true) {
+        await delay(5000);
+        populateQuestionsLogArray();
+    }
+}
+async function foreverRefreshUsers() {
+    while(true) {
+        await delay(3000);
+        // broadcastEvent(playerUsername, "user joined", playerUsername);
+    }
+}
+
 let playerUsername = "none";
 let currentWord;
 let activePlayers = [
@@ -144,8 +157,11 @@ async function submitQuestion() {
     answerItem = await answerItem.json();
     DebugA("answer returned: " + answerItem);
 
-    populateQuestionsLogArray();
+    if(answerItem.answer === "yes" || answerItem.answer === "no" || answerItem.answer === "maybe" || answerItem.answer === "correct") {
+        broadcastEvent(playerUsername, "question added", answerItem);
+    }
 
+    populateQuestionsLogArray();
 }
 
 function pushUniqueQuestion(questionItem) {
@@ -156,7 +172,6 @@ function pushUniqueQuestion(questionItem) {
 }
 
 async function populateQuestionsLogArray() {
-    DebugA("populate Question Log array");
     const response = await fetch('/api/questionsLog');
     questionsLog = await response.json();
     DebugA(questionsLog);
@@ -275,6 +290,8 @@ async function configureWebSocket() {
             socketAddPlayer(msg.value);
         } else if(msg.type === "player left") {
             socketRemovePlayer(msg.value);
+        } else if(msg.type === "question added") {
+            socketAddQuestion(msg.value); 
         }
     };
 }
@@ -297,6 +314,16 @@ function socketRemovePlayer(username) {
     addAllActivePlayers();
 }
 
+function socketAddQuestion(questionItem) {
+    DebugA("Socket add question");
+    if(questionItem.answer === "correct") {
+        questionsLog = [];
+    } else {
+        pushUniqueQuestion(questionItem);
+    }
+    addAllAnswers();
+}
+
 function broadcastEvent(from, type, value) {
     DebugA("broadcastEvent " + from + type + value);
     const event = {
@@ -317,4 +344,6 @@ async function initialize() {
 }
 
 initialize();
+foreverRefreshUsers();
+// foreverRefresh();
 // fakeUsers();
