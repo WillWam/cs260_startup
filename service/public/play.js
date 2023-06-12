@@ -55,7 +55,7 @@ function logIn() {
 }
 
 function pushUniquePlayer(username) {
-    DebugA("pushUniquePlayer: " + username);
+    // DebugA("pushUniquePlayer: " + username);
     if((!activePlayers.includes(username) && username !== null) || username === "Anonymous") {
         activePlayers.push(username);
     }
@@ -79,7 +79,7 @@ function removeActivePlayer(username) {
 }
 
 function addAllActivePlayers() {
-    DebugA("addAllActivePlayers");
+    // DebugA("addAllActivePlayers");
     const activeUsersUl = document.getElementById("active-players-ul");
     const playerInfoTitle = document.getElementById("player-info-title");
 
@@ -271,7 +271,7 @@ async function getWord() {
     }
 
     //Take this out later
-    newWord();
+    // newWord();
 }
 
 
@@ -311,13 +311,13 @@ function displayMsg(cls, from, msg) {
 }
 
 function socketAddPlayer(username) {
-    DebugA("Socket add player");
+    // DebugA("Socket add player");
     pushUniquePlayer(username);
     // addAllActivePlayers();
 }
 
 function socketRemovePlayer(username) {
-    DebugA("Socket remove player");
+    // DebugA("Socket remove player");
     removeActivePlayer(username);
     addAllActivePlayers();
 }
@@ -339,7 +339,7 @@ function broadcastEvent(from, type, value) {
       type: type,
       value: value,
     };
-    DebugA(JSON.stringify(event));
+    // DebugA(JSON.stringify(event));
     socket.send(JSON.stringify(event));
 }
 

@@ -250,7 +250,7 @@ async function askQuestion(questionItem) {
     if(answerItem.username !== "Anonymous") {
       await DB.incrementScore(answerItem.username, difficulty);
     }
-    setNewWord();
+    
     return answerItem;
   }
 
