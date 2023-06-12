@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './scores.css';
+import './leaderboard.css';
 
-export function Scores() {
+export function Leaderboard() {
   const [scores, setScores] = React.useState([]);
 
   // Demonstrates calling a service asynchronously so that
