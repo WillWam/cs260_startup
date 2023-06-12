@@ -82,15 +82,15 @@ apiRouter.get('/difficulty', (_req, res) => {
 //   res.send(usernameItem);
 // });
 
-// Guess the word
-apiRouter.post('/guessWord', (req, res) => {
-  let wordCorrectStatus = guessWord(req.body);
-  res.send(wordCorrectStatus);
-});
+// // Guess the word
+// apiRouter.post('/guessWord', (req, res) => {
+//   let wordCorrectStatus = guessWord(req.body);
+//   res.send(wordCorrectStatus);
+// });
 
 // Set New Word
 apiRouter.post('/newWord', async (req, res) => {
-  let newWord = await setNewWord();
+  let newWord = await setNewWord(req.body);
   res.send(newWord);
 });
 
@@ -206,6 +206,11 @@ async function setNewWord(newWord) {
   // const response = await fetch("https://random-word-api.vercel.app/api?words=1");
   // word = await response.json();
 
+  word = newWord;
+  word = String(word);
+  console.log(typeof word);
+  console.log(word);
+
   if(word.length > 7) {
     difficulty = "Hard";
   } else if(word.length > 5) {
@@ -240,7 +245,6 @@ async function askQuestion(questionItem) {
       endDate: new Date(Date.now()),
       questions: questionsLog
     }
-    console.log("");
     await DB.addFinishedWord(finishedWordItem);
     await DB.clearQuestionsLog();
     if(answerItem.username !== "Anonymous") {

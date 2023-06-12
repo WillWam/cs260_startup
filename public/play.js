@@ -12,12 +12,20 @@ async function foreverRefresh() {
 }
 async function foreverRefreshUsers() {
     while(true) {
-        await delay(3000);
-        // broadcastEvent(playerUsername, "user joined", playerUsername);
+        activePlayers = [];
+        if(playerUsername !== "") {
+
+        pushUniquePlayer(playerUsername);
+        }
+        await delay(500);
+        
+        broadcastEvent(playerUsername, "player joined", playerUsername);
+        addAllActivePlayers();
     }
 }
 
-let playerUsername = "none";
+
+let playerUsername = "";
 let currentWord;
 let activePlayers = [
     
@@ -48,7 +56,7 @@ function logIn() {
 
 function pushUniquePlayer(username) {
     DebugA("pushUniquePlayer: " + username);
-    if(!activePlayers.includes(username) && username !== null) {
+    if((!activePlayers.includes(username) && username !== null) || username === "Anonymous") {
         activePlayers.push(username);
     }
 }
@@ -305,7 +313,7 @@ function displayMsg(cls, from, msg) {
 function socketAddPlayer(username) {
     DebugA("Socket add player");
     pushUniquePlayer(username);
-    addAllActivePlayers();
+    // addAllActivePlayers();
 }
 
 function socketRemovePlayer(username) {
@@ -325,7 +333,7 @@ function socketAddQuestion(questionItem) {
 }
 
 function broadcastEvent(from, type, value) {
-    DebugA("broadcastEvent " + from + type + value);
+    // DebugA("broadcastEvent " + from + type + value);
     const event = {
       from: from,
       type: type,
