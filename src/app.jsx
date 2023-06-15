@@ -5,7 +5,7 @@ import { Play } from './play/play';
 import { Leaderboard } from './leaderboard/leaderboard';
 import { About } from './about/about';
 import { AuthState } from './login/authState';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 

@@ -106,3 +106,13 @@ For this deliverable I enabled realtime reporting of active players when a user 
 - **Frontend makes WebSocket connection** - done!
 - **Data sent over WebSocket connection** - done!
 - **WebSocket data displayed** - When a new player joins (becomes active on the site), their username will pop up on all other users' active players tab
+
+
+## React deliverable
+
+For this deliverable, I started converting the application to react, but it is still incomplete. I am just going for partial points here. 
+
+- **Bundled and transpiled** - done!
+- **Components** - Login, Play, Leaderboard, and About components are created. Although, I would not call them functional... Except for maybe the about and login components?
+- **Router** - Routing Implemented! It's working. Correctly routes between components to display what it should, and has a header and footer that are always displayed. 
+- **Hooks** - Hooks not really used at all
